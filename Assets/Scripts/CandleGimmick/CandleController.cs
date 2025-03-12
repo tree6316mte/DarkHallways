@@ -29,7 +29,7 @@ public class CandleController : MonoBehaviour
     //불과 빛을 켜고 끄는 함수
     public void ToggleFlame(bool state)
     {
-        ifFlameOn = state;
+        isFlameOn = state;
         SetFlameState(isFlameOn);
     }
 
@@ -47,10 +47,5 @@ public class CandleController : MonoBehaviour
             flameMaterial.DisableKeyword("_EMISSION"); // 불을 껐을 때 매터리얼의 emission 비활성화
             candleLight.enabled = false; // 불을 껐을 때 빛 비활성화
         }
-    }
-
-    void Update()
-    {
-        
     }
 }
