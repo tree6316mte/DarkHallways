@@ -16,9 +16,14 @@ public class LightController : MonoBehaviour
         candleController = candle.GetComponent<CandleController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if(Vector3.Distance(transform.position, candle.transform.position) <= interactDistance)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                candleController.LightCandle(); // 라이터로 불을 붙일 때만 불을 켬
+            }
+        }
     }
 }
