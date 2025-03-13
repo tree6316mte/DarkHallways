@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CameraPivot
   - Item
+  - UsableObject
   layers:
   - Default
   - TransparentFX

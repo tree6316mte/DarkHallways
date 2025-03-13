@@ -8,7 +8,7 @@ public class PlayerRaycast : MonoBehaviour
     // Ray
     private Ray ray;
     private RaycastHit hit;
-    private float maxDistance = 3f;
+    private float maxDistance = 5f;
     public LayerMask layerMask;
 
     // Pivot
@@ -37,6 +37,7 @@ public class PlayerRaycast : MonoBehaviour
             if (hit.collider != null)
                 Hit(hit);
         }
+        isInput = false;
     }
 
     private void Hit(RaycastHit hit)
@@ -51,7 +52,6 @@ public class PlayerRaycast : MonoBehaviour
                 break;
             default:
                 Debug.LogWarning("Hit : 예외 발생");
-                isInput = false;
                 break;
         }
     }
@@ -62,13 +62,11 @@ public class PlayerRaycast : MonoBehaviour
             Debug.Log(itemHandler.GetItemInfo());
             itemHandler.UseItem();
         }
-        isInput = false;
     }
 
     private void ItemInteraction(RaycastHit hit)
     {
         Debug.Log("ItemInteraction");
-        isInput = false;
     }
 
     public void InputDetected()
