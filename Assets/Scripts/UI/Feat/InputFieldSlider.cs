@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -70,10 +71,15 @@ public class InputFieldSlider : MonoBehaviour
 
     public void SetValue(int newValue)
     {
+        StartCoroutine(UpdateInputField(newValue));
+    }
+    IEnumerator UpdateInputField(int newValue)
+    {
+        yield return null; // 한 프레임 기다리기
+        gameObject.SetActive(true); // UI 활성화 후 텍스트 변경
         newValue = Mathf.Clamp(newValue, minValue, maxValue);
         slider.value = newValue;
         inputField.text = newValue.ToString();
-        onChanged?.Invoke(newValue);
     }
 
     public int GetValue()

@@ -39,8 +39,14 @@ public class OptionUI : BaseUI
 
         int bgmVolume = PlayerPrefs.GetInt(SoundManager.Instance.bgmHash, 100);
         int sfxVolume = PlayerPrefs.GetInt(SoundManager.Instance.sfxHash, 100);
+        Debug.Log(bgmVolume);
+        Debug.Log(sfxVolume);
+
+
         SetBGM(bgmVolume);
         SetSFX(sfxVolume);
+        bgmSlider.SetValue(bgmVolume);
+        sfxSlider.SetValue(sfxVolume);
     }
 
     /// <summary>
