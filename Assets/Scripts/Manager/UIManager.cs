@@ -2,23 +2,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoSingleton<UIManager>
 {
-    public static UIManager Instance { get; private set; }
-
     private const string UIPrefabPath = "UI/";
     private Dictionary<string, BaseUI> activeUIs = new Dictionary<string, BaseUI>();
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
 
     /// <summary>
     /// UI를 로드하고 활성화합니다.
@@ -85,10 +72,10 @@ public class UIManager : MonoBehaviour
     /// <param name="message">팝업 메시지</param>
     /// <param name="onConfirmAction">확인 버튼 동작</param>
     /// <param name="onCancelAction">취소 버튼 동작</param>
-    public void ShowPopup(string message, Action onConfirmAction, Action onCancelAction = null)
+    public void ShowPopup(string title, string message, Action onConfirmAction, Action onCancelAction = null)
     {
         var popup = ShowUI<PopupUI>();
-        popup.Setup(message, onConfirmAction, onCancelAction);
+        popup.Setup(title, message, onConfirmAction, onCancelAction);
     }
 
     /// <summary>
