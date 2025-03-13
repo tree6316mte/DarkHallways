@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FlashLight
   m_EditorClassIdentifier: 
   itemName: "\uC190\uC804\uB4F1"
-  itemDescription: "\uC5B4\uB450\uC6B4\uACF3\uC744 \uBE44\uCDB0\uC900\uB2E4\\n(E\uD0A4\uB85C
-    \uD68D\uB4DD\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4)"
+  itemDescription: "\uC5B4\uB450\uC6B4\uACF3\uC744 \uBE44\uCDB0\uC900\uB2E4 (E\uB97C
+    \uB20C\uB7EC \uC90D\uAE30)"
   itemCode: 0
   isOwnered: 0
