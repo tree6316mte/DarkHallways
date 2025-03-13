@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool CursurLockState;
     private float curCamX;
 
+    [Header("Interaction")]
+    public bool interaction;
 
     private void Awake()
     {
@@ -82,6 +84,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-
+        interaction = (context.ReadValue<float>() == 1) ? true : false;
+        Debug.Log("OnInteract");
+        PlayerRaycast.inputDetect?.Invoke();
     }
 }

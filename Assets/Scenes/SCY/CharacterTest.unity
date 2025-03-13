@@ -165,7 +165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 755142731}
   m_Layer: 6
-  m_Name: CameraPivot
+  m_Name: CamPivot
   m_TagString: CameraPivot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,10 +180,11 @@ Transform:
   m_GameObject: {fileID: 755142730}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1762103946}
   m_Father: {fileID: 1334633284}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &783785640
@@ -306,7 +307,7 @@ GameObject:
   - component: {fileID: 924750932}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -414,7 +415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1223629313
 Transform:
   m_ObjectHideFlags: 0
@@ -493,6 +494,7 @@ GameObject:
   - component: {fileID: 1334633286}
   - component: {fileID: 1334633285}
   - component: {fileID: 1334633288}
+  - component: {fileID: 1334633289}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -559,8 +561,10 @@ MonoBehaviour:
   speed: 0
   camContainer: {fileID: 755142731}
   lookSpeed: 0
-  maxXLook: 40
-  minXLook: -30
+  maxXLook: 30
+  minXLook: -50
+  CursurLockState: 1
+  interaction: 0
 --- !u!114 &1334633287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -620,7 +624,19 @@ MonoBehaviour:
     m_ActionId: 4faab6f8-bad9-4022-ae2d-a70c0d0709b6
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1334633286}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b336d06c-1e45-40a4-87d5-022fa5fdb4e4
     m_ActionName: Player/Interaction[/Keyboard/e]
   - m_PersistentCalls:
@@ -655,6 +671,22 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1334633289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334633283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 135e3f4ec018d8d4ab470c7d13ff6d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 55
+  camPivot: {fileID: 0}
 --- !u!1 &1608738818
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,13 +857,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1762103943}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.24986488, y: -0, z: -0, w: 0.9682808}
-  m_LocalPosition: {x: 0, y: 5.66, z: -4.06}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 28.939, y: 0, z: 0}
+  m_Father: {fileID: 755142731}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1762103947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1002,4 +1034,3 @@ SceneRoots:
   - {fileID: 783785644}
   - {fileID: 1334633284}
   - {fileID: 924750935}
-  - {fileID: 1762103946}

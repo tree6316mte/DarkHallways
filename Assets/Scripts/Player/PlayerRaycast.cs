@@ -16,12 +16,12 @@ public class PlayerRaycast : MonoBehaviour
 
     // Item
     private ItemHandler itemHandler;
-    public Action inputDitect;
+    public static Action inputDetect;
     private bool isInput;
 
     private void Start()
     {
-        inputDitect += InputDitected;
+        inputDetect += InputDetected;
         isInput = false;
         if (camPivot == null)
             camPivot = transform.Find("CamPivot");
@@ -32,7 +32,7 @@ public class PlayerRaycast : MonoBehaviour
         ray = new Ray(camPivot.position, camPivot.forward);
         Debug.DrawRay(ray.origin, ray.direction * maxDistance, Color.green);
 
-        if (Physics.Raycast(ray, out hit, maxDistance, layerMask))
+        if (Physics.Raycast(ray, out hit, maxDistance, layerMask) && isInput)
         {
             if (hit.collider != null)
                 Hit(hit);
@@ -56,6 +56,7 @@ public class PlayerRaycast : MonoBehaviour
     }
     private void GetItem(RaycastHit hit)
     {
+        Debug.Log("GetItem");
         if (hit.collider.TryGetComponent<ItemHandler>(out itemHandler))
         {
 
@@ -69,7 +70,7 @@ public class PlayerRaycast : MonoBehaviour
         isInput = false;
     }
 
-    public void InputDitected()
+    public void InputDetected()
     {
         isInput = true;
     }
