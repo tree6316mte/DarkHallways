@@ -1,6 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerRaycast : MonoBehaviour
@@ -15,12 +14,16 @@ public class PlayerRaycast : MonoBehaviour
     [SerializeField] Transform camPivot;
 
     // Item
-    private ItemHandler itemHandler;
     public static Action inputDetect;
+    [SerializeField] private TextMeshProUGUI itemInfoText;
+    private ItemHandler itemHandler;
     private bool isInput;
+    PlayerState playerState;
 
     private void Start()
     {
+        playerState = GetComponent<PlayerState>();
+
         inputDetect += InputDetected;
         isInput = false;
         if (camPivot == null)
@@ -35,38 +38,38 @@ public class PlayerRaycast : MonoBehaviour
         if (Physics.Raycast(ray, out hit, maxDistance, layerMask) && isInput)
         {
             if (hit.collider != null)
-                Hit(hit);
+                GetItem(hit);
         }
+
+        else if (Physics.Raycast(ray, out hit, maxDistance, layerMask))
+        {
+            if (hit.collider != null)
+                itemInfoText.text = GetInfoText(hit);
+        }
+
+        else
+            itemInfoText.text = string.Empty;
+
         isInput = false;
     }
 
-    private void Hit(RaycastHit hit)
-    {
-        switch (hit.collider.tag)
-        {
-            case "Item":
-                GetItem(hit);
-                break;
-            case "Puzzle":
-                ItemInteraction(hit);
-                break;
-            default:
-                Debug.LogWarning("Hit : 예외 발생");
-                break;
-        }
-    }
     private void GetItem(RaycastHit hit)
     {
         if (hit.collider.TryGetComponent<ItemHandler>(out itemHandler))
         {
             Debug.Log(itemHandler.GetItemInfo());
-            itemHandler.UseItem();
+            playerState.hasItem = itemHandler.itemInstance;
+            Destroy(hit.collider.gameObject);
         }
     }
 
-    private void ItemInteraction(RaycastHit hit)
+    private string GetInfoText(RaycastHit hit)
     {
-        Debug.Log("ItemInteraction");
+        if (hit.collider.TryGetComponent<ItemHandler>(out itemHandler))
+        {
+            return itemHandler.GetItemInfo();
+        }
+        return string.Empty;
     }
 
     public void InputDetected()
