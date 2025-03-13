@@ -14,18 +14,27 @@ public class PlayerRaycast : MonoBehaviour
     [SerializeField] Transform camPivot;
 
     // Item
-    public static Action inputDetect;
-    [SerializeField] private TextMeshProUGUI itemInfoText;
     private ItemHandler itemHandler;
-    private bool isInput;
-    PlayerState playerState;
+    [SerializeField] private TextMeshProUGUI itemInfoText;
+    public static Action inputDetect;
+    private bool isEInput;
+    Player player;
+
+    // InteractiveItem
+    private InteractiveItem interactiveItemHandler;
+    private bool isClicked;
+    public static Action clickAction;
+
 
     private void Start()
     {
-        playerState = GetComponent<PlayerState>();
+        player = GetComponent<Player>();
 
         inputDetect += InputDetected;
-        isInput = false;
+        clickAction += ClickDetected;
+
+        isEInput = false;
+        isClicked = false;
         if (camPivot == null)
             camPivot = transform.Find("CamPivot");
     }
@@ -35,45 +44,37 @@ public class PlayerRaycast : MonoBehaviour
         ray = new Ray(camPivot.position, camPivot.forward);
         Debug.DrawRay(ray.origin, ray.direction * maxDistance, Color.green);
 
-        if (Physics.Raycast(ray, out hit, maxDistance, layerMask) && isInput)
+        if (Physics.Raycast(ray, out hit, maxDistance, layerMask))
         {
             if (hit.collider != null)
-                GetItem(hit);
-        }
-
-        else if (Physics.Raycast(ray, out hit, maxDistance, layerMask))
-        {
-            if (hit.collider != null)
-                itemInfoText.text = GetInfoText(hit);
+            {
+                if (isEInput && hit.collider.gameObject.TryGetComponent<ItemHandler>(out itemHandler))
+                    player.GetItem(itemHandler);
+                
+                else if (isClicked && hit.collider.gameObject.TryGetComponent<InteractiveItem>(out interactiveItemHandler))
+                    itemHandler.UseItem(interactiveItemHandler);
+                
+                else if (hit.collider.gameObject.TryGetComponent<InteractiveItem>(out interactiveItemHandler))
+                    itemInfoText.text = itemHandler.GetInfoText(hit);
+                
+                else
+                    itemInfoText.text = "올바른 대상이 아닙니다.";
+            }
         }
 
         else
             itemInfoText.text = string.Empty;
 
-        isInput = false;
-    }
-
-    private void GetItem(RaycastHit hit)
-    {
-        if (hit.collider.TryGetComponent<ItemHandler>(out itemHandler))
-        {
-            Debug.Log(itemHandler.GetItemInfo());
-            playerState.hasItem = itemHandler.itemInstance;
-            Destroy(hit.collider.gameObject);
-        }
-    }
-
-    private string GetInfoText(RaycastHit hit)
-    {
-        if (hit.collider.TryGetComponent<ItemHandler>(out itemHandler))
-        {
-            return itemHandler.GetItemInfo();
-        }
-        return string.Empty;
+        isEInput = isClicked = false;
     }
 
     public void InputDetected()
     {
-        isInput = true;
+        isEInput = true;
+    }
+
+    public void ClickDetected()
+    {
+        isClicked = true;
     }
 }

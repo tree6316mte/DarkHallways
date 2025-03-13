@@ -84,4 +84,10 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Started)
             PlayerRaycast.inputDetect?.Invoke();
     }
+
+    public void OnClicked(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+            PlayerRaycast.clickAction?.Invoke();
+    }
 }

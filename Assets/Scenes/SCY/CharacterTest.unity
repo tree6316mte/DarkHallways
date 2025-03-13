@@ -1076,8 +1076,8 @@ MonoBehaviour:
   speed: 0
   camContainer: {fileID: 755142731}
   lookSpeed: 0
-  maxXLook: 30
-  minXLook: -50
+  maxXLook: 40
+  minXLook: -80
   CursurLockState: 1
 --- !u!114 &1334633287
 MonoBehaviour:
@@ -1139,9 +1139,9 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1334633286}
+      - m_Target: {fileID: 1334633283}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnInteract
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1157,11 +1157,15 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: d45501e4-0897-4544-b85d-ae74878ecac0
     m_ActionName: Player/Sprint[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6c007f5a-cd70-4cd5-a7cd-8090957107bb
+    m_ActionName: Player/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1762103945}
 --- !u!136 &1334633288
 CapsuleCollider:
   m_ObjectHideFlags: 0
