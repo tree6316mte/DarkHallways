@@ -18,17 +18,17 @@ public class PlayerRaycast : MonoBehaviour
     [SerializeField] private TextMeshProUGUI itemInfoText;
     public static Action inputDetect;
     private bool isEInput;
-    Player player;
+    Player playerItem;
 
     // InteractiveItem
-    private InteractiveItem interactiveItemHandler;
+    private InteractiveItemHandler interactiveItemHandler;
     private bool isClicked;
     public static Action clickAction;
 
 
     private void Start()
     {
-        player = GetComponent<Player>();
+        playerItem = GetComponent<Player>();
 
         inputDetect += InputDetected;
         clickAction += ClickDetected;
@@ -47,34 +47,43 @@ public class PlayerRaycast : MonoBehaviour
         if (Physics.Raycast(ray, out hit, maxDistance, layerMask))
         {
             if (hit.collider != null)
-            {
-                if (isEInput && hit.collider.gameObject.TryGetComponent<ItemHandler>(out itemHandler))
-                    player.GetItem(itemHandler);
-                
-                else if (isClicked && hit.collider.gameObject.TryGetComponent<InteractiveItem>(out interactiveItemHandler))
-                    itemHandler.UseItem(interactiveItemHandler);
-                
-                else if (hit.collider.gameObject.TryGetComponent<InteractiveItem>(out interactiveItemHandler))
-                    itemInfoText.text = itemHandler.GetInfoText(hit);
-                
-                else
-                    itemInfoText.text = "올바른 대상이 아닙니다.";
-            }
+                ProcessHitCollider(hit);
         }
-
         else
             itemInfoText.text = string.Empty;
 
         isEInput = isClicked = false;
     }
 
+    private void ProcessHitCollider(RaycastHit hit)
+    {
+        // ItemHandler, UI에 Item 정보를 띄우거나 해당 아이템 습득
+        if (isEInput && playerItem.hasItem == null && hit.collider.gameObject.TryGetComponent<ItemHandler>(out itemHandler))
+            playerItem.GetItem(itemHandler);
+
+        else if (hit.collider.gameObject.TryGetComponent<ItemHandler>(out itemHandler))
+            itemInfoText.text = itemHandler.GetInfoText(hit);
+
+        // interactiveItemHandler
+        if (isClicked && (playerItem.hasItem != null) && hit.collider.gameObject.TryGetComponent<InteractiveItemHandler>(out interactiveItemHandler))
+        {
+            if (interactiveItemHandler.interactiveItem != null)
+                interactiveItemHandler.UseItem(playerItem.hasItem);
+        }
+
+        else if (playerItem.hasItem != null && hit.collider.gameObject.TryGetComponent<InteractiveItemHandler>(out interactiveItemHandler))
+            itemInfoText.text = interactiveItemHandler.ItemValidator(playerItem.hasItem);
+    }
+
     public void InputDetected()
     {
         isEInput = true;
+        Debug.Log("inputDetected");
     }
 
     public void ClickDetected()
     {
         isClicked = true;
+        Debug.Log("ClickDetected");
     }
 }

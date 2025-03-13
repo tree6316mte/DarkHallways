@@ -715,10 +715,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 924750931}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 540b73f46966a9447abbfe5fa126d1b3, type: 3}
+  m_Script: {fileID: 11500000, guid: ff478d5fad5ce084a917b55a62a03a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInstance: {fileID: 11400000, guid: 15a9d6c65092b5b4b904b590bd2cdbdf, type: 2}
+  interactiveItem: {fileID: 11400000, guid: 42ffe991843253848ae8805c1709579e, type: 2}
 --- !u!1001 &1044294168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1139,9 +1139,9 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1334633283}
+      - m_Target: {fileID: 1334633286}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: OnInteract
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1158,7 +1158,19 @@ MonoBehaviour:
     m_ActionId: d45501e4-0897-4544-b85d-ae74878ecac0
     m_ActionName: Player/Sprint[/Keyboard/leftShift]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1334633286}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnClicked
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6c007f5a-cd70-4cd5-a7cd-8090957107bb
     m_ActionName: Player/New action
   m_NeverAutoSwitchControlSchemes: 0

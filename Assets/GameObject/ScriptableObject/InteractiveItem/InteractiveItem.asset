@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac24cb1ce5a82c44aadfa35851e587ab, type: 3}
   m_Name: InteractiveItem
   m_EditorClassIdentifier: 
+  interactiveItemName: "\uC784\uC2DC \uC0C1\uD638\uC791\uC6A9 \uAC00\uB2A5 \uC544\uC774\uD15C\uC785\uB2C8\uB2E4."
   itemCode: 0

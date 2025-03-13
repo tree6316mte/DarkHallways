@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 
     public void GetItem(ItemHandler newItem)
     {
-        Debug.Log(newItem.GetItemInfo());
+        Debug.Log("호출 GetItem");
         hasItem = newItem.itemInstance;
         Destroy(newItem.gameObject);
     }
