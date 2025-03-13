@@ -8,6 +8,8 @@ public class LighterController : MonoBehaviour
     [SerializeField]  // private로 선언하면서 인스펙터에 보이도록 설정
     private float interactDistance = 3f;  // 상호작용 가능한 거리
 
+    // public bool isHeld = false; // 라이터를 플레이어가 들고 있는지 여부
+
     void Start()
     {
         // 캔들 오브젝트에서 CandleController 스크립트를 찾기
@@ -16,6 +18,8 @@ public class LighterController : MonoBehaviour
 
     void Update()
     {
+        // if (!isHeld) return; // 플레이어가 들고 있을 때만 작동
+
         // 라이터가 캔들에 가까워지면 상호작용 가능
         if (Vector3.Distance(transform.position, candle.transform.position) <= interactDistance)
         {
