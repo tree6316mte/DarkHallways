@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ItemHandler : MonoBehaviour
 {
-    internal Item itemInstance;
+    public Item itemInstance;
 
     public void UseItem()
     {
         /* 
          * Usable Object(퍼즐)와 Item이 있고
-         * Usable Object에 Item에 특정한 숫자를 매김
+         * Usable Object과 Item에 특정한 숫자를 매김
          * 레이캐스트 히트된 Usable Object와 Item의 Code가 같으면 UseItem이 사용됨
          */
 

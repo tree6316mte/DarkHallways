@@ -51,15 +51,16 @@ public class PlayerRaycast : MonoBehaviour
                 break;
             default:
                 Debug.LogWarning("Hit : 예외 발생");
+                isInput = false;
                 break;
         }
     }
     private void GetItem(RaycastHit hit)
     {
-        Debug.Log("GetItem");
         if (hit.collider.TryGetComponent<ItemHandler>(out itemHandler))
         {
-
+            Debug.Log(itemHandler.GetItemInfo());
+            itemHandler.UseItem();
         }
         isInput = false;
     }
