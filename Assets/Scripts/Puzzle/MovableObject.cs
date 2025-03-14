@@ -4,12 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.LookDev;
 
-public interface IInteractable
-{
-    public string GetPromptText();
-    public void Interact();
-}
-public class MovableObject : MonoBehaviour, IInteractable
+
+public class MovableObject : PuzzleHandler
 {
    
     Camera camera;
@@ -29,11 +25,11 @@ public class MovableObject : MonoBehaviour, IInteractable
         DetectCamera();
         if (!isMoved && Input.GetMouseButtonDown(0)) Interact();
     }
-    public string GetPromptText()
+    public override void InteractPuzzle()
     {
-        return promptText;
+        Interact();
     }
-    //TODO. Interact, promptTxt 추후 수정
+
     public void Interact()
     {
         StartCoroutine(MoveCoroutine(right));
@@ -49,15 +45,15 @@ public class MovableObject : MonoBehaviour, IInteractable
         float dotProduct = Vector3.Dot(cameraTransform.right, toObject);
         if (dotProduct > 0)
         {
-            promptText = "왼쪽으로 밀기";
+            puzzle.description = "왼쪽으로 밀기";
             right = false;
         }
         else
         {
-            promptText = "오른쪽으로 밀기";
+            puzzle.description = "오른쪽으로 밀기";
             right = true;
         }
-        Debug.Log(promptText);
+        Debug.Log(puzzle.description);
     }
 
     private IEnumerator MoveCoroutine(bool right)
