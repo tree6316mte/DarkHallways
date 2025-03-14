@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     private Vector2 curMoveInput;
     private Rigidbody _rigidbody;
+    private bool isSprint;
 
     [Header("Look")]
     private Vector2 curLookInput;
@@ -25,7 +26,6 @@ public class PlayerController : MonoBehaviour
     {
         // Move
         _rigidbody = GetComponent<Rigidbody>();
-        speed = (speed == 0) ? 5f : speed;
 
         // Look
         lookSpeed = 0.3f;
@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         Vector3 vec = transform.forward * curMoveInput.y + transform.right * curMoveInput.x;
+        speed = (isSprint) ? 6f : 3f;
         vec *= speed;
         vec.y = _rigidbody.velocity.y;
 
@@ -95,5 +96,13 @@ public class PlayerController : MonoBehaviour
         {
             Player.throwAction?.Invoke();
         }
+    }
+
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            isSprint = true;
+        else
+            isSprint = false;
     }
 }

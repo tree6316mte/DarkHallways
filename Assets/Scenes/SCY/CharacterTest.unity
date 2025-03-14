@@ -1157,7 +1157,19 @@ MonoBehaviour:
     m_ActionId: b336d06c-1e45-40a4-87d5-022fa5fdb4e4
     m_ActionName: Player/Interaction[/Keyboard/e]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1334633286}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnSprint
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: d45501e4-0897-4544-b85d-ae74878ecac0
     m_ActionName: Player/Sprint[/Keyboard/leftShift]
   - m_PersistentCalls:
@@ -1250,7 +1262,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasItem: {fileID: 0}
-  memorizeObject: {fileID: 0}
 --- !u!1 &1608738818
 GameObject:
   m_ObjectHideFlags: 0
