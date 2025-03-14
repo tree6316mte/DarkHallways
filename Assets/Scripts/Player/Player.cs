@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     private bool isDead;
     public Item hasItem;
     public static Action throwAction;
-    [SerializeField] private GameObject memorizeObject;
     Rigidbody itemRigidbody;
 
     private void Start()
@@ -28,30 +27,35 @@ public class Player : MonoBehaviour
         Debug.Log("호출 GetItem");
 
         hasItem = newItem.itemInstance;
-        memorizeObject = newItem.gameObject;
         newItem.gameObject.SetActive(false);
         newItem.transform.SetParent(transform);
+        newItem.gameObject.name = "myItem"; // 참조하기 쉽게 오브젝트 이름 바꿈
     }
 
     public void ThrowItem()
     {
         if (hasItem != null)
         {
+            float yRotation = transform.eulerAngles.y;
             Vector3 spawnPosition = transform.position + transform.forward;
-            spawnPosition.y += .7f;
-            GameObject item = Instantiate(memorizeObject, spawnPosition, transform.rotation);
-            if (item.TryGetComponent<Rigidbody>(out Rigidbody rb))
-            {
-                rb.AddForce(transform.forward * 2f, ForceMode.Impulse);
-            }
+            spawnPosition.y = 1f;
+            GameObject myItem = transform.Find("myItem").gameObject;
+            Rigidbody _rigidbody;
+
+            myItem.transform.SetParent(null);
+            myItem.transform.position = spawnPosition;
+            myItem.transform.rotation = Quaternion.identity;
+            myItem.gameObject.SetActive(true);
+
+            if (myItem.TryGetComponent<Rigidbody>(out _rigidbody))
+                _rigidbody.AddForce((yRotation * transform.forward).normalized * 2f, ForceMode.Impulse);
             else
             {
-               Rigidbody _rigidbody = memorizeObject.AddComponent<Rigidbody>();
-                _rigidbody.AddForce(transform.forward * 2f, ForceMode.Impulse);
+                _rigidbody = myItem.AddComponent<Rigidbody>();
+                _rigidbody.AddForce((yRotation * transform.forward).normalized * 2f, ForceMode.Impulse);
             }
 
             hasItem = null;
-            memorizeObject = null;
         }
         else
             Debug.Log("버릴 아이템이 없습니다!");
