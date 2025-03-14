@@ -26,38 +26,38 @@ public class MovableObject : MonoBehaviour, IInteractable
     }
     private void Update()
     {
-        DetectMousePosition();
+        DetectCamera();
         if (!isMoved && Input.GetMouseButtonDown(0)) Interact();
     }
     public string GetPromptText()
     {
         return promptText;
     }
-
+    //TODO. Interact, promptTxt 추후 수정
     public void Interact()
     {
         StartCoroutine(MoveCoroutine(right));
         isMoved = true;
     }
-    //TODO. Player에 따라 수정
-    private void DetectMousePosition()
+
+    private void DetectCamera()
     {
-        Vector3 mousePosition = Input.mousePosition;
-        Vector3 worldMousePosition = camera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y,camera.nearClipPlane));
+        Transform cameraTransform = camera.transform;
+        Vector3 cameraForward = cameraTransform.forward;    
+        Vector3 toObject = (transform.position - cameraTransform.position).normalized;
 
-        float objectCenterX = transform.position.x;
-        float mouseX = worldMousePosition.x;
-
-        if (mouseX < objectCenterX)
+        float dotProduct = Vector3.Dot(cameraTransform.right, toObject);
+        if (dotProduct > 0)
         {
             promptText = "왼쪽으로 밀기";
             right = false;
         }
-        else if (mouseX > objectCenterX)
+        else
         {
             promptText = "오른쪽으로 밀기";
             right = true;
         }
+        Debug.Log(promptText);
     }
 
     private IEnumerator MoveCoroutine(bool right)
