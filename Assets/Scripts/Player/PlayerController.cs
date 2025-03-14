@@ -7,7 +7,6 @@ using UnityEngine.Rendering.UI;
 
 public class PlayerController : MonoBehaviour
 {
-
     [Header("Move")]
     public float speed;
     private Vector2 curMoveInput;
@@ -67,7 +66,6 @@ public class PlayerController : MonoBehaviour
     public void OnLook(InputAction.CallbackContext context)
     {
         curLookInput = context.ReadValue<Vector2>();
-
     }
 
     private void Look()
@@ -82,12 +80,20 @@ public class PlayerController : MonoBehaviour
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
-            PlayerRaycast.inputDetect?.Invoke();
+            PlayerRaycast.interactAction?.Invoke();
     }
 
     public void OnClicked(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
             PlayerRaycast.clickAction?.Invoke();
+    }
+
+    public void OnThrowItem(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            Player.throwAction?.Invoke();
+        }
     }
 }

@@ -16,7 +16,7 @@ public class PlayerRaycast : MonoBehaviour
     // Item
     private ItemHandler itemHandler;
     [SerializeField] private TextMeshProUGUI itemInfoText;
-    public static Action inputDetect;
+    public static Action interactAction;
     private bool isEInput;
     Player playerItem;
 
@@ -30,7 +30,7 @@ public class PlayerRaycast : MonoBehaviour
     {
         playerItem = GetComponent<Player>();
 
-        inputDetect += InputDetected;
+        interactAction += InputDetected;
         clickAction += ClickDetected;
 
         isEInput = false;
