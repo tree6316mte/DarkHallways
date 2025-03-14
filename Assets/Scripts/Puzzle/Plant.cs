@@ -9,15 +9,20 @@ public class Plant : MonoBehaviour
     public Transform palm;
     private Vector3 origin;
     private Vector3 targetScale;
-
+    public Color newColor;
     private void Start()
     {
+
         origin = palm.localPosition;
         targetScale = new Vector3(palm.localPosition.x, -1f, palm.localPosition.z);
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W)) WaterPlant();
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            WaterPlant();
+            ChangeMat();
+        }
     }
 
     public void WaterPlant()
@@ -41,11 +46,20 @@ public class Plant : MonoBehaviour
         float elapsed = 0f;
         while(elapsed < growthDuration)
         {
-            Debug.Log(palm.localPosition);
             palm.localPosition = Vector3.Lerp(origin, targetScale, elapsed / growthDuration);
             elapsed += Time.deltaTime;
             yield return null;
         }
         palm.localPosition = targetScale;
+    }
+
+    private void ChangeMat()
+    {
+        Transform cover = transform.GetChild(0).GetChild(0);
+        Renderer coverRenderer = cover.GetComponent<Renderer>();
+        MaterialPropertyBlock block = new MaterialPropertyBlock();
+        coverRenderer.GetPropertyBlock(block);
+        block.SetColor("_BaseColor", newColor);
+        coverRenderer.SetPropertyBlock(block);
     }
 }

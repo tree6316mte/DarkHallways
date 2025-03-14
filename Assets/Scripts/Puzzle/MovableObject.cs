@@ -29,13 +29,17 @@ public class MovableObject : PuzzleHandler
     {
         Interact();
     }
-
+    public override string GetDescription()
+    {
+        DetectCamera();
+        return base.GetDescription();
+    }
     public void Interact()
     {
         StartCoroutine(MoveCoroutine(right));
         isMoved = true;
     }
-
+    
     private void DetectCamera()
     {
         Transform cameraTransform = camera.transform;

@@ -11,7 +11,7 @@ public class PuzzleHandler : MonoBehaviour
 
     }
 
-    public string GetDescription()
+    public virtual string GetDescription()
     {
         return puzzle.description;
     }
