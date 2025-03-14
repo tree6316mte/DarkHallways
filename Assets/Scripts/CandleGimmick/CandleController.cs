@@ -4,48 +4,55 @@ using UnityEngine;
 
 public class CandleController : MonoBehaviour
 {
-    public ParticleSystem flameParticles; //ºÒ³ª´Â ÆÄÆ¼Å¬ ½Ã½ºÅÛ
-    public Material flameMaterial; // ºÒ³ª´Â ¸ÅÅÍ¸®¾ó
-    public Light candleLight; // ÄµµéÀÇ ºû
+    public CandleData candleData;
+    public ParticleSystem flameParticles;
+    public Material flameMaterial;
+    public Light candleLight;
 
-    private bool isFlameOn = false; // ºÒ°ú ºûÀÌ ÄÑÁ³´ÂÁö ¿©ºÎ
-    private bool hasBeenLit = false; // ¶óÀÌÅÍ·Î ºÒÀ» ºÙ¿´´ÂÁö ¿©ºÎ
-
+    private static int litCandleCount = 0; // ì¼œì§„ ì–‘ì´ˆ ê°œìˆ˜
+    private static int totalCandles = 5; // ì „ì²´ ì–‘ì´ˆ ê°œìˆ˜
 
     void Start()
     {
-        SetFlameState(isFlameOn); //½ÃÀÛÇÒ¶§ ºÒ°ú ºûÀÌ ²¨Á®ÀÖ°Ô ¼³Á¤
+        SetFlameState(candleData.hasBeenLit);
     }
 
-    // ¶óÀÌÅÍ·Î ºÒÀ» ºÙÀÌ´Â ÇÔ¼ö
+    // ë¼ì´í„°ë¡œ ë¶ˆì„ ë¶™ì´ëŠ” í•¨ìˆ˜
     public void LightCandle()
     {
-        if (!hasBeenLit) // ºÒÀÌ ÀÌ¹Ì ºÙÀº »óÅÂ¶ó¸é ´Ù½Ã ÄÑÁöÁö ¾Êµµ·Ï
+        if (!candleData.hasBeenLit)
         {
-            hasBeenLit = true; // ºÒÀ» ºÙ¿´À½À» ±â·Ï
-            ToggleFlame(true); // ºÒ°ú ºû ÄÑ±â
+            candleData.hasBeenLit = true; // ë¶ˆì„ ë¶™ì˜€ìŒì„ ê¸°ë¡.
+            candleData.isLit = true;
+            ToggleFlame(true);
+            litCandleCount++;
+
+            // ëª¨ë“  ì–‘ì´ˆê°€ ì¼œì¡Œë‹¤ë©´ "ì„±ê³µ!" ë©”ì‹œì§€ ì¶œë ¥
+            if (litCandleCount >= totalCandles)
+            {
+                Debug.Log("ì„±ê³µ!");
+            }
         }
     }
-    //ºÒ°ú ºûÀ» ÄÑ°í ²ô´Â ÇÔ¼ö
+
     public void ToggleFlame(bool state)
     {
-        isFlameOn = state;
-        SetFlameState(isFlameOn);
+        SetFlameState(state);
     }
 
     private void SetFlameState(bool state)
     {
         if(state)
         {
-            flameParticles.Play(); // ºÒÀ» Ä×À» ¶§ ÆÄÆ¼Å¬ ½Ã½ºÅÛ Àç»ı
-            flameMaterial.EnableKeyword("_EMISSION"); // ºÒÀ» Ä×À» ¶§ ¸ÅÅÍ¸®¾óÀÇ emission È°¼ºÈ­
-            candleLight.enabled = true; // ºÒÀ» Ä×À» ¶§ ºû È°¼ºÈ­
+            flameParticles.Play(); // ë¶ˆì„ ì¼°ì„ ë•Œ íŒŒí‹°í´ ì‹œìŠ¤í…œ ì¬ìƒ
+            flameMaterial.EnableKeyword("_EMISSION"); // ë¶ˆì„ ì¼°ì„ ë•Œ ë§¤í„°ë¦¬ì–¼ì˜ emission í™œì„±í™”
+            candleLight.enabled = true; // ë¶ˆì„ ì¼°ì„ ë•Œ ë¹› í™œì„±í™”
         }
         else
         {
-            flameParticles.Stop(); // ºÒÀ» ²°À» ¶§ ÆÄÆ¼Å¬ ½Ã½ºÅÛ Á¤Áö
-            flameMaterial.DisableKeyword("_EMISSION"); // ºÒÀ» ²°À» ¶§ ¸ÅÅÍ¸®¾óÀÇ emission ºñÈ°¼ºÈ­
-            candleLight.enabled = false; // ºÒÀ» ²°À» ¶§ ºû ºñÈ°¼ºÈ­
+            flameParticles.Stop(); // ë¶ˆì„ ê»ì„ ë•Œ íŒŒí‹°í´ ì‹œìŠ¤í…œ ì •ì§€
+            flameMaterial.DisableKeyword("_EMISSION"); // ë¶ˆì„ ê»ì„ ë•Œ ë§¤í„°ë¦¬ì–¼ì˜ emission ë¹„í™œì„±í™”
+            candleLight.enabled = false; // ë¶ˆì„ ê»ì„ ë•Œ ë¹› ë¹„í™œì„±í™”
         }
     }
 }

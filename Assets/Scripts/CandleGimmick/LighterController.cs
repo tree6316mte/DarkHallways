@@ -2,32 +2,42 @@ using UnityEngine;
 
 public class LighterController : MonoBehaviour
 {
-    public GameObject candle;  // Äµµé ¿ÀºêÁ§Æ®
-    private CandleController candleController;  // ÄµµéÀÇ CandleController ½ºÅ©¸³Æ®
-
-    [SerializeField]  // private·Î ¼±¾ğÇÏ¸é¼­ ÀÎ½ºÆåÅÍ¿¡ º¸ÀÌµµ·Ï ¼³Á¤
-    private float interactDistance = 3f;  // »óÈ£ÀÛ¿ë °¡´ÉÇÑ °Å¸®
-
-    // public bool isHeld = false; // ¶óÀÌÅÍ¸¦ ÇÃ·¹ÀÌ¾î°¡ µé°í ÀÖ´ÂÁö ¿©ºÎ
-
-    void Start()
-    {
-        // Äµµé ¿ÀºêÁ§Æ®¿¡¼­ CandleController ½ºÅ©¸³Æ®¸¦ Ã£±â
-        candleController = candle.GetComponent<CandleController>();
-    }
+    public LighterData lighterData;  // LighterDataë¥¼ ë¶ˆëŸ¬ì˜¤ê¸° ìœ„í•œ ë³€ìˆ˜
+    public GameObject currentItem; // í”Œë ˆì´ì–´ê°€ ë“¤ê³  ìˆëŠ” ì•„ì´í…œ
 
     void Update()
     {
-        // if (!isHeld) return; // ÇÃ·¹ÀÌ¾î°¡ µé°í ÀÖÀ» ¶§¸¸ ÀÛµ¿
-
-        // ¶óÀÌÅÍ°¡ Äµµé¿¡ °¡±î¿öÁö¸é »óÈ£ÀÛ¿ë °¡´É
-        if (Vector3.Distance(transform.position, candle.transform.position) <= interactDistance)
+        // ë¼ì´í„°ë¥¼ ë“¤ê³  ìˆì„ ë•Œë§Œ ë ˆì´ìºìŠ¤íŠ¸ ë°œì‚¬
+        if (currentItem != null && currentItem.CompareTag("Lighter"))
         {
-            if (Input.GetKeyDown(KeyCode.F))  // F Å°·Î ºÒÀ» ºÙÀÓ
+            if (Input.GetMouseButtonDown(0)) // ì¢Œí´ë¦­ ì‹œ ì–‘ì´ˆì— ë¶ˆì„ ë¶™ì´ê¸°
             {
-                // ¶óÀÌÅÍ·Î ºÒÀ» ºÙÀÏ ¶§¸¸ ºÒÀ» ÄÔ
-                candleController.LightCandle();
+                TryLightCandle();
             }
+        }
+    }
+
+    private void TryLightCandle()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  // í™”ë©´ì—ì„œ ë§ˆìš°ìŠ¤ ìœ„ì¹˜ë¡œ Ray ë°œì‚¬
+        if (Physics.Raycast(ray, out RaycastHit hit, lighterData.interactDistance)) // ë ˆì´ìºìŠ¤íŠ¸ ë°œì‚¬ (ìŠ¤í¬ë¦½í„°ë¸” ì˜¤ë¸Œì íŠ¸ì˜ ê°’ ì‚¬ìš©)
+        {
+            Debug.Log($"Rayê°€ {hit.collider.name}ì„ ê°ì§€í•¨");
+
+            CandleController candle = hit.collider.GetComponent<CandleController>();  // ì–‘ì´ˆë¥¼ ì°¾ê³ 
+            if (candle != null)
+            {
+                Debug.Log("CandleController ê°ì§€ë¨! LightCandle() ì‹¤í–‰");
+                candle.LightCandle();  // ë¶ˆì„ ë¶™ì„
+            }
+            else
+            {
+                Debug.Log("CandleControllerê°€ ì—†ìŒ!");
+            }
+        }
+        else
+        {
+            Debug.Log("Rayê°€ ì•„ë¬´ê²ƒë„ ê°ì§€í•˜ì§€ ëª»í•¨");
         }
     }
 }
