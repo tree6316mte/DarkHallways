@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WoodTrap : MonoBehaviour
+public class WoodTrap : PuzzleHandler
 {
     private void OnTriggerEnter(Collider other)
     {

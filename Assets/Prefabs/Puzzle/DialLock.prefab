@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a972a3d29657b4eb8363b297756e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puzzle: {fileID: 11400000, guid: 0e38a559fbc44fa4a892fddb4cdb1b26, type: 2}
   drums:
   - {fileID: 7619519711212136821}
   - {fileID: 6512344618545080039}

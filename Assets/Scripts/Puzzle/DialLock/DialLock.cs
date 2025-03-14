@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 
-public class DialLock : MonoBehaviour
+public class DialLock : PuzzleHandler
 {
     public NumbersDrum[] drums;
     public int[] answers;
@@ -18,9 +18,11 @@ public class DialLock : MonoBehaviour
     public float moveSpeed = 2f;
 
     public Action ChangeIndex;
+    UI_DialLock ui;
     private void Start()
     {
         index = 0;
+        if(ui == null) ui = FindObjectOfType<UI_DialLock>();
     }
 
     public void SetAnswer(int[] answer) // 각 다이얼 정답 지정
@@ -48,5 +50,10 @@ public class DialLock : MonoBehaviour
     {
         CheckCode();
         Debug.Log(complete);
+    }
+
+    public override void InteractPuzzle()
+    {
+        ui.OpenDial();
     }
 }

@@ -18,8 +18,8 @@ public class Plant : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.W)) WaterPlant();
-        //TODO. 플레이어가 들고 있는 오브젝트가 물병인지 확인하고 함수 실행
     }
+
     public void WaterPlant()
     {
         if (!isWatered)
