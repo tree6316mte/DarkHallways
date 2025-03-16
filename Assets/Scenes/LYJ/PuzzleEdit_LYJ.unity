@@ -123,12 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &438503514 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9205443802644919933, guid: 4fd49349d7e7e494f9f3d2b4079905d1,
-    type: 3}
-  m_PrefabInstance: {fileID: 2603879020624073948}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &474962243
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,8 +336,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5122612a2f2a86948867ef2c98597d56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  candle: {fileID: 438503514}
-  interactDistance: 3
+  lighterData: {fileID: 11400000, guid: e20e14d70b5c8e4438fc71ac3b9b122e, type: 2}
+  currentItem: {fileID: 0}
 --- !u!1 &2116407978
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,6 +438,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2161614705184212571, guid: 4fd49349d7e7e494f9f3d2b4079905d1,
+        type: 3}
+      propertyPath: candleData
+      value: 
+      objectReference: {fileID: 11400000, guid: c53ee8c9fa2019944858f7c186ef83cc,
+        type: 2}
+    - target: {fileID: 3482936522030495928, guid: 4fd49349d7e7e494f9f3d2b4079905d1,
+        type: 3}
+      propertyPath: candleData
+      value: 
+      objectReference: {fileID: 11400000, guid: c53ee8c9fa2019944858f7c186ef83cc,
+        type: 2}
+    - target: {fileID: 5362491779125901850, guid: 4fd49349d7e7e494f9f3d2b4079905d1,
+        type: 3}
+      propertyPath: candleData
+      value: 
+      objectReference: {fileID: 11400000, guid: c53ee8c9fa2019944858f7c186ef83cc,
+        type: 2}
+    - target: {fileID: 5526027607941394286, guid: 4fd49349d7e7e494f9f3d2b4079905d1,
+        type: 3}
+      propertyPath: candleData
+      value: 
+      objectReference: {fileID: 11400000, guid: c53ee8c9fa2019944858f7c186ef83cc,
+        type: 2}
     - target: {fileID: 5933632679929808095, guid: 4fd49349d7e7e494f9f3d2b4079905d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -494,6 +512,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6898152363550147348, guid: 4fd49349d7e7e494f9f3d2b4079905d1,
+        type: 3}
+      propertyPath: candleData
+      value: 
+      objectReference: {fileID: 11400000, guid: c53ee8c9fa2019944858f7c186ef83cc,
+        type: 2}
     - target: {fileID: 7575417469535868665, guid: 4fd49349d7e7e494f9f3d2b4079905d1,
         type: 3}
       propertyPath: m_Name
