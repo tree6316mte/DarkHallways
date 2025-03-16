@@ -7,6 +7,12 @@ public class CardSlot : MonoBehaviour
 
     public bool InsertCard(Card card)
     {
+        if (card == null) // 카드가 null일 때 처리
+        {
+            Debug.LogError("카드가 null입니다!");
+            return false;
+        }
+
         if (currentCard == null && card.cardData.cardID == slotData.slotID) // 정답 확인
         {
             card.transform.position = transform.position;

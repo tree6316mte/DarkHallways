@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1ae335c9c3ee644c8caca81f401d2d0, type: 3}
-  m_Name: WhiteCardSlot
+  m_Name: YellowCardSlot
   m_EditorClassIdentifier: 
-  slotID: 0
-  correctCard: {fileID: 0}
+  slotID: 3
+  correctCard: {fileID: 11400000, guid: fd459c1a41f4a31498c3e9879b286d71, type: 2}

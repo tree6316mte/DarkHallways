@@ -7,6 +7,11 @@ public class Card : MonoBehaviour
 
     void Start()
     {
+        if (transform == null)
+        {
+            Debug.LogError("카드의 transform이 null입니다!");
+        }
+
         originalPosition = transform.position;
     }
 
