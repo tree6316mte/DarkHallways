@@ -24,8 +24,8 @@ public class InputFieldSlider : MonoBehaviour
         slider.wholeNumbers = true; // ★ 정수만 사용하도록 설정
 
         // 초기 동기화
-        slider.value = Mathf.Clamp(Mathf.RoundToInt(slider.value), minValue, maxValue);
-        inputField.text = slider.value.ToString();
+        // slider.value = Mathf.Clamp(Mathf.RoundToInt(slider.value), minValue, maxValue);
+        // inputField.text = slider.value.ToString();
 
         // 이벤트 리스너 등록
         slider.onValueChanged.AddListener(OnSliderValueChanged);
@@ -71,7 +71,12 @@ public class InputFieldSlider : MonoBehaviour
 
     public void SetValue(int newValue)
     {
-        StartCoroutine(UpdateInputField(newValue));
+        // StartCoroutine(UpdateInputField(newValue));
+        Debug.Log("WTF : " + newValue);
+        gameObject.SetActive(true); // UI 활성화 후 텍스트 변경
+        newValue = Mathf.Clamp(newValue, minValue, maxValue);
+        // slider.value = newValue;
+        inputField.text = newValue.ToString();
     }
     IEnumerator UpdateInputField(int newValue)
     {
