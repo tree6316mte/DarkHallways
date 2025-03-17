@@ -26,7 +26,7 @@ public class Door : MonoBehaviour
         float elapsed = 0f;
 
         Quaternion startRotation = transform.rotation;
-        Quaternion targetRotation = Quaternion.Euler(0, -120, 0);
+        Quaternion targetRotation = Quaternion.Euler(0, 120, 0);
         while (elapsed < 2f)
         {
             elapsed += Time.deltaTime;
