@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    public bool isShutter; // 문인지 셔터인지
     public PuzzleHandler locker; 
     // Start is called before the first frame update
     void Start()
@@ -14,12 +15,15 @@ public class Door : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (locker.isOpen) Open();
+        if (locker != null)
+            if (locker.isOpen) Open();
     }
 
     public void Open()
     {
-        StartCoroutine(OpenDoor());
+        if (!isShutter)
+            StartCoroutine(OpenDoor());
+        else StartCoroutine(OpenShutter());
     }
     private IEnumerator OpenDoor()
     {
@@ -35,4 +39,20 @@ public class Door : MonoBehaviour
         }
         transform.rotation = targetRotation;
     }
+
+    private IEnumerator OpenShutter()
+    {
+        float elapsed = 0f;
+
+        Vector3 start = transform.position;
+        Vector3 target = start + new Vector3(0, 5, 0);
+        while (elapsed < 2f)
+        {
+            elapsed += Time.deltaTime;
+            transform.position = Vector3.Lerp(start, target, elapsed / 2);
+            yield return null;
+        }
+        transform.position = target;
+    }
+    
 }
