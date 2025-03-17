@@ -13,6 +13,7 @@ public class KeypadInteractionFPV : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+                
             if (Physics.Raycast(ray, out var hit))
             {
                 if (hit.collider.TryGetComponent(out KeypadButton keypadButton))

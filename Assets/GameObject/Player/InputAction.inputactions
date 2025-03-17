@@ -18,7 +18,7 @@
                     "name": "Look",
                     "type": "Value",
                     "id": "4faab6f8-bad9-4022-ae2d-a70c0d0709b6",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Delta",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -36,6 +36,15 @@
                     "name": "Sprint",
                     "type": "Button",
                     "id": "d45501e4-0897-4544-b85d-ae74878ecac0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UseItem",
+                    "type": "Button",
+                    "id": "6c007f5a-cd70-4cd5-a7cd-8090957107bb",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -128,6 +137,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bc90bf55-cb77-4033-a37f-79331c06eea3",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

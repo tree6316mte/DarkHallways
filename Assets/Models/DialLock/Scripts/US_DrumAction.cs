@@ -234,9 +234,9 @@ namespace UnlockSystem
                 if (deltaRotate >= 360.0f)
                 {
                     drum.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, offsetDrumsMassive[offsetDrumsMassive.Length - 1]));
-                    codeLockGenerator.CheckCode();
-                    if (codeLockGenerator.CheckOneShotCode(countPress, drumID))
-                        PlayRotationUnLockAudio();
+                    //codeLockGenerator.CheckCode();
+                    //if (codeLockGenerator.CheckOneShotCode(countPress, drumID))
+                    PlayRotationUnLockAudio();
                     rotateUp = false;
                 }
             }
@@ -245,9 +245,9 @@ namespace UnlockSystem
                 if (Mathf.Abs(drum.transform.localEulerAngles.z) >= offsetDrumsMassive[countPress])
                 {
                     drum.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, offsetDrumsMassive[countPress]));
-                    codeLockGenerator.CheckCode();
-                    if (codeLockGenerator.CheckOneShotCode(countPress, drumID))
-                        PlayRotationUnLockAudio();
+                    //codeLockGenerator.CheckCode();
+                    //if (codeLockGenerator.CheckOneShotCode(countPress, drumID))
+                    PlayRotationUnLockAudio();
                     rotateUp = false;
                 }
             }
