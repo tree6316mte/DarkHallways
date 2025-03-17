@@ -4,6 +4,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.LookDev;
 
+public enum Direction
+{
+    Right,
+    Left,
+    Inter
+}
 
 public class MovableObject : PuzzleHandler
 {
@@ -11,6 +17,7 @@ public class MovableObject : PuzzleHandler
     Camera camera;
     string promptText;
     bool right = false;
+    public Direction direction;
     public float movingTime = 2f;
     private bool isMoved = false;
     public Vector3 movePosition;
@@ -42,12 +49,25 @@ public class MovableObject : PuzzleHandler
     
     private void DetectCamera()
     {
-        Transform cameraTransform = camera.transform;
-        Vector3 cameraForward = cameraTransform.forward;    
-        Vector3 toObject = (transform.position - cameraTransform.position).normalized;
+        if (direction == Direction.Inter)
+        {
+            Transform cameraTransform = camera.transform;
+            Vector3 cameraForward = cameraTransform.forward;
+            Vector3 toObject = (transform.position - cameraTransform.position).normalized;
 
-        float dotProduct = Vector3.Dot(cameraTransform.right, toObject);
-        if (dotProduct > 0)
+            float dotProduct = Vector3.Dot(cameraTransform.right, toObject);
+            if (dotProduct > 0)
+            {
+                puzzle.description = "왼쪽으로 밀기";
+                right = false;
+            }
+            else
+            {
+                puzzle.description = "오른쪽으로 밀기";
+                right = true;
+            }
+        }
+        else if(direction == Direction.Left)
         {
             puzzle.description = "왼쪽으로 밀기";
             right = false;
@@ -57,7 +77,6 @@ public class MovableObject : PuzzleHandler
             puzzle.description = "오른쪽으로 밀기";
             right = true;
         }
-        Debug.Log(puzzle.description);
     }
 
     private IEnumerator MoveCoroutine(bool right)

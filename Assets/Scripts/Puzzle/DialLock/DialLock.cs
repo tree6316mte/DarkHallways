@@ -49,11 +49,14 @@ public class DialLock : PuzzleHandler
     public void EndDial()
     {
         CheckCode();
+        InteractPuzzle();
         Debug.Log(complete);
     }
 
     public override void InteractPuzzle()
     {
+        base.InteractPuzzle();
         ui.OpenDial();
     }
+
 }

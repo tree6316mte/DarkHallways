@@ -6,5 +6,4 @@ using UnityEngine;
 public class PuzzleData : ScriptableObject
 {
     public string description;
-
 }
