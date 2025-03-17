@@ -16,12 +16,12 @@ MonoBehaviour:
   itemDescription: "\uC5B4\uB450\uC6B4\uACF3\uC744 \uBE44\uCDB0\uC900\uB2E4 (E\uB97C
     \uB20C\uB7EC \uC90D\uAE30)"
   itemCode: 0
-  getItemEvent:
+  onUse:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5974675557899501160, guid: 6b6d2746bc97bd34988b594265c68ae0,
+      - m_Target: {fileID: 2823412964476723962, guid: b0250c6c35360384fa7e9e47f0f09d30,
           type: 3}
-        m_TargetAssemblyTypeName: EventContainer, Assembly-CSharp
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: GetFlash
         m_Mode: 1
         m_Arguments:
@@ -32,6 +32,3 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  useItemEvent:
-    m_PersistentCalls:
-      m_Calls: []

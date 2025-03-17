@@ -3,21 +3,38 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-// 획득, 사용 이벤트들이 저장됨
+// 사용 이벤트들을 명시함
 public class EventContainer : MonoBehaviour
 {
-    [SerializeField] private Player player;
-
     private void Start()
     {
-        player = FindFirstObjectByType<Player>();
+        
     }
 
-    public void GetFlash()
+    public void GetFuctionFromItemCode(ItemHandler itemHandler)
     {
-        // 플래시 습득시 호출
-        Debug.Log("GetFlash 호출됨");
-        player.isGetFlash = true;
-        player.hasItem = null;
+        switch(itemHandler.itemCode)
+        {
+            case 0:
+                itemHandler.useItemEvent += DebugItemCode;
+                break;
+            case 1:
+                itemHandler.useItemEvent += UnLock;
+                break;
+            default:
+                Debug.Log("할당된 이벤트가 없습니다.");
+                break;
+        }
+    }
+
+    public void DebugItemCode(ItemHandler itemHandler)
+    {
+        Debug.Log($"아이템 코드 : {itemHandler.itemCode}");
+    }
+
+    public void UnLock(ItemHandler itemHandler)
+    {
+        // 문이 열림
+        // 자물쇠가 중력 영향을 받게 됨
     }
 }

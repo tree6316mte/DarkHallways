@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,6 +8,4 @@ public class Item : ScriptableObject
     public string itemName;
     public string itemDescription;
     public int itemCode;
-    public UnityEvent getItemEvent;
-    public UnityEvent useItemEvent;
 }

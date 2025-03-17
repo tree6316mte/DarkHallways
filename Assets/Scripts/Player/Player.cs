@@ -7,7 +7,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     //private bool isDead;
-    internal bool isGetFlash;
+    private bool isGetFlash;
     private bool isFlashing;
     public ItemHandler hasItem;
     public static Action throwAction;
@@ -30,6 +30,13 @@ public class Player : MonoBehaviour
         Debug.Log($"{str}");
     }
 
+    public void GetFlash()
+    {
+        // 플래시 습득시 호출
+        isGetFlash = true;
+        hasItem = null;
+    }
+
     public void UseFlash()
     {
         if (isGetFlash && SpotLight != null)
@@ -47,7 +54,6 @@ public class Player : MonoBehaviour
         newItem.gameObject.SetActive(false);
         newItem.transform.SetParent(transform);
         newItem.gameObject.name = "myItem"; // 참조하기 쉽게 오브젝트 이름 바꿈
-        newItem.OnGetItem();
     }
 
     public void ThrowItem()
