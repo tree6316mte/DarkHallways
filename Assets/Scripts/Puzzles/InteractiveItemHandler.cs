@@ -8,19 +8,19 @@ public class InteractiveItemHandler : MonoBehaviour
 
     private string validStr;
 
-    public void UseItem(ItemHandler usedItem)
+    public void UseItem(Player usedItem)
     {
-        if (usedItem.itemInstance.itemCode == interactiveItem.itemCode)
+        if (usedItem.hasItem.itemInstance.itemCode == interactiveItem.itemCode)
         {
-            usedItem.OnUseItem();
+            usedItem.hasItem.OnUseItem();
             Debug.Log("아이템 사용됨");
         }
         else
             Debug.Log("아이템 거부됨");
     }
 
-    public string ItemValidator(Item usedItem)
+    public string ItemValidator(Player usedItem)
     {
-        return validStr = (usedItem.itemCode == interactiveItem.itemCode) ? "사용 가능" : "사용 불가능" ;
+        return validStr = (usedItem.hasItem.itemInstance.itemCode == interactiveItem.itemCode) ? "사용 가능" : "사용 불가능" ;
     }
 }

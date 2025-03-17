@@ -66,13 +66,10 @@ public class PlayerRaycast : MonoBehaviour
 
         // interactiveItemHandler
         if (isClicked && (playerItem.hasItem != null) && hit.collider.gameObject.TryGetComponent<InteractiveItemHandler>(out interactiveItemHandler))
-        {
-            if (interactiveItemHandler.interactiveItem != null)
                 interactiveItemHandler.UseItem(playerItem);
-        }
 
         else if (playerItem.hasItem != null && hit.collider.gameObject.TryGetComponent<InteractiveItemHandler>(out interactiveItemHandler))
-            itemInfoText.text = interactiveItemHandler.ItemValidator(playerItem.hasItem);
+            itemInfoText.text = interactiveItemHandler.ItemValidator(playerItem);
     }
 
     public void InputDetected()

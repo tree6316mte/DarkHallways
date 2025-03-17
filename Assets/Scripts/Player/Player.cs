@@ -7,9 +7,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     //private bool isDead;
-    private bool isGetFlash;
+    internal bool isGetFlash;
     private bool isFlashing;
-    public Item hasItem;
+    public ItemHandler hasItem;
     public static Action throwAction;
     public static Action flashAction;
     Rigidbody itemRigidbody;
@@ -26,15 +26,8 @@ public class Player : MonoBehaviour
 
     private void DisplayHasItem()
     {
-        string str = (hasItem != null) ? "가진 아이템 : " + hasItem.itemName : "비어있음";
+        string str = (hasItem != null) ? "가진 아이템 : " + hasItem.itemInstance.itemName : "비어있음";
         Debug.Log($"{str}");
-    }
-
-    public void GetFlash()
-    {
-        // 플래시 습득시 호출
-        isGetFlash = true;
-        hasItem = null;
     }
 
     public void UseFlash()
@@ -50,7 +43,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("호출 GetItem");
 
-        hasItem = newItem.itemInstance;
+        hasItem = newItem;
         newItem.gameObject.SetActive(false);
         newItem.transform.SetParent(transform);
         newItem.gameObject.name = "myItem"; // 참조하기 쉽게 오브젝트 이름 바꿈
