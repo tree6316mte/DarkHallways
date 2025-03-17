@@ -98,27 +98,6 @@ public class KeypadLock : PuzzleHandler
         panelMesh.material.SetVector("_EmissionColor", screenNormalColor * screenIntensity);
     }
 
-    public override void InteractPuzzle()
-    {
-        if (door != null)
-        {
-            StartCoroutine(OpenDoor());
-        }
-        else return;
-    }
 
-    private IEnumerator OpenDoor()
-    {
-        float elapsed = 0f;
 
-        Quaternion startRotation = door.transform.rotation;
-        Quaternion targetRotation = startRotation * Quaternion.Euler(0, -120, 0);
-        while(elapsed < 2f)
-        {
-            elapsed += Time.deltaTime;
-            door.transform.rotation = Quaternion.Slerp(startRotation, targetRotation, elapsed / 2);
-            yield return null;
-        }
-        door.transform.rotation = targetRotation;
-    }
 }
