@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class KeypadLock : MonoBehaviour
+public class KeypadLock : PuzzleHandler
 {
-    private string curInput; // ÀÔ·ÂµÈ ¼ıÀÚ
-    public int maxLength; // ÀÚ¸´¼ö
-    public int answerCode; // Á¤´ä
+    private string curInput; // ì…ë ¥ëœ ìˆ«ì
+    public int maxLength; // ìë¦¿ìˆ˜
+    public int answerCode; // ì •ë‹µ
+    public GameObject door;
 
+    [Header("í…ìŠ¤íŠ¸")]
     public string correctText = "OPEN";
     public string denyText = "DENIED";
 
@@ -16,7 +18,7 @@ public class KeypadLock : MonoBehaviour
     public TextMeshProUGUI inputText;
     private float screenIntensity = 2.5f;
 
-    [Header("È­¸é »ö")]
+    [Header("í™”ë©´ ìƒ‰")]
     public Color screenNormalColor = new Color(0.98f, 0.50f, 0.032f, 1f);
     public Color screenDeniedColor = new Color(1f, 0f, 0f, 1f); 
     public Color screenGrantedColor = new Color(0f, 0.62f, 0.07f); 
@@ -31,7 +33,7 @@ public class KeypadLock : MonoBehaviour
 
     public void AddInput(string input)
     {
-        // ¹öÆ° Å¬¸¯À½
+        // ë²„íŠ¼ í´ë¦­ìŒ
         if (displaying || complete) return;
         switch (input)
         {
@@ -66,22 +68,22 @@ public class KeypadLock : MonoBehaviour
         inputText.text = curInput;
     }
 
-    public void Correct() // Á¤´ä ½Ã
+    public void Correct() // ì •ë‹µ ì‹œ
     {
         inputText.text = correctText;
         panelMesh.material.SetVector("_EmissionColor", screenGrantedColor * screenIntensity);
-        // Á¤´ä È¿°úÀ½
-        
+        // ì •ë‹µ íš¨ê³¼ìŒ
+        InteractPuzzle();    
     }
 
-    public void Denied() // ¿À´ä ½Ã
+    public void Denied() // ì˜¤ë‹µ ì‹œ
     {
         inputText.text = denyText;
         panelMesh.material.SetVector("_EmissionColor", screenDeniedColor * screenIntensity);
-        // °æ°íÀ½
+        // ê²½ê³ ìŒ
     }
 
-    private IEnumerator DisplayResult(bool ok) // Á¶ÀÛ Áß
+    private IEnumerator DisplayResult(bool ok) // ì¡°ì‘ ì¤‘
     {
         displaying = true;
 
@@ -95,5 +97,28 @@ public class KeypadLock : MonoBehaviour
         ClearInput();
         panelMesh.material.SetVector("_EmissionColor", screenNormalColor * screenIntensity);
     }
-    
+
+    public override void InteractPuzzle()
+    {
+        if (door != null)
+        {
+            StartCoroutine(OpenDoor());
+        }
+        else return;
+    }
+
+    private IEnumerator OpenDoor()
+    {
+        float elapsed = 0f;
+
+        Quaternion startRotation = door.transform.rotation;
+        Quaternion targetRotation = startRotation * Quaternion.Euler(0, -120, 0);
+        while(elapsed < 2f)
+        {
+            elapsed += Time.deltaTime;
+            door.transform.rotation = Quaternion.Slerp(startRotation, targetRotation, elapsed / 2);
+            yield return null;
+        }
+        door.transform.rotation = targetRotation;
+    }
 }
