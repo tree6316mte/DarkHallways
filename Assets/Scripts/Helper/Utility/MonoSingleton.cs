@@ -6,7 +6,7 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
     public static T Instance => instance;
     [SerializeField] protected bool isDontDestroyOnLoad = false;
 
-    private void Awake()
+    protected void Awake()
     {
         if (instance != null && instance != this)
         {
@@ -20,7 +20,7 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    protected void OnDestroy()
     {
         if (instance != null && instance == this)
             instance = null;

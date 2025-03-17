@@ -20,6 +20,10 @@ public class MainMenuUIController : MonoBehaviour
             GameQuit
         );
     }
+    public void OnClickOption()
+    {
+        UIManager.Instance.ShowOption();
+    }
 
     private void GameStart()
     {
@@ -27,6 +31,6 @@ public class MainMenuUIController : MonoBehaviour
     }
     private void GameQuit()
     {
-        Debug.Log("게임시작!");
+        Debug.Log("게임종료!");
     }
 }
