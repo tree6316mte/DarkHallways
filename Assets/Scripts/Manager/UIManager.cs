@@ -101,7 +101,7 @@ public class UIManager : MonoSingleton<UIManager>
     public void ShowGameEsc()
     {
         var gameEscUI = ShowUI<GameEscUI>();
-        gameEscUI.Setup();
+        gameEscUI.Setup(0);
     }
 
     /// <summary>

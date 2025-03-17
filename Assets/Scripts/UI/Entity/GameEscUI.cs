@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameEscUI : BaseUI
 {
+    [HideInInspector] public int chaperPrograss = 0;
     [SerializeField] private TextMeshProUGUI clipBoardText;
     [SerializeField] private List<Button> buttonChapters;
     [SerializeField] private Button buttonContinue;
@@ -33,11 +34,26 @@ public class GameEscUI : BaseUI
 
         if (buttonQuit != null)
             buttonQuit.onClick.AddListener(() => OnClickQuit());
+
+        for (int i = 0; i < buttonChapters.Count; i++)
+        {
+            int index = i;
+            buttonChapters[index].onClick.AddListener(() => OnClickChapterInfo(index));
+        }
     }
 
-    public void Setup()
+    public void Setup(int chaperPrograss)
     {
+        this.chaperPrograss = chaperPrograss;
 
+        for (int i = 0; i < Mathf.Min(this.chaperPrograss, buttonChapters.Count); i++)
+        {
+            buttonChapters[i].enabled = true;
+        }
+        for (int i = this.chaperPrograss; i < buttonChapters.Count; i++)
+        {
+            buttonChapters[i].enabled = false;
+        }
     }
 
     /// <summary>
@@ -65,13 +81,20 @@ public class GameEscUI : BaseUI
         OnHide();
     }
 
-
     /// <summary>
     /// 게임종료 버튼 동작
     /// </summary>
     private void OnClickQuit()
     {
         OnHide();
+    }
+
+    /// <summary>
+    /// 게임종료 버튼 동작
+    /// </summary>
+    private void OnClickChapterInfo(int index)
+    {
+        // OnHide();
     }
 
 
