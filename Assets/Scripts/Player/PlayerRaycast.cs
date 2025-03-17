@@ -68,7 +68,7 @@ public class PlayerRaycast : MonoBehaviour
         if (isClicked && (playerItem.hasItem != null) && hit.collider.gameObject.TryGetComponent<InteractiveItemHandler>(out interactiveItemHandler))
         {
             if (interactiveItemHandler.interactiveItem != null)
-                interactiveItemHandler.UseItem(playerItem.hasItem);
+                interactiveItemHandler.UseItem(playerItem);
         }
 
         else if (playerItem.hasItem != null && hit.collider.gameObject.TryGetComponent<InteractiveItemHandler>(out interactiveItemHandler))

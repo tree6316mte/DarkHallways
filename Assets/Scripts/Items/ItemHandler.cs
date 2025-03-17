@@ -15,6 +15,15 @@ public class ItemHandler : MonoBehaviour
         return string.Empty;
     }
 
+    public void OnGetItem()
+    {
+        itemInstance.getItemEvent?.Invoke();
+    }
+    public void OnUseItem()
+    {
+        itemInstance.useItemEvent?.Invoke();
+    }
+
     public string GetItemName()
     {
         return itemInstance.itemName;

@@ -93,9 +93,7 @@ public class PlayerController : MonoBehaviour
     public void OnThrowItem(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
-        {
             Player.throwAction?.Invoke();
-        }
     }
 
     public void OnSprint(InputAction.CallbackContext context)
@@ -104,5 +102,11 @@ public class PlayerController : MonoBehaviour
             isSprint = true;
         else
             isSprint = false;
+    }
+
+    public void OnFlash(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+            Player.flashAction?.Invoke();
     }
 }

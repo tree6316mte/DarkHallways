@@ -8,10 +8,13 @@ public class InteractiveItemHandler : MonoBehaviour
 
     private string validStr;
 
-    public void UseItem(Item usedItem)
+    public void UseItem(ItemHandler usedItem)
     {
-        if (usedItem.itemCode == interactiveItem.itemCode)
+        if (usedItem.itemInstance.itemCode == interactiveItem.itemCode)
+        {
+            usedItem.OnUseItem();
             Debug.Log("아이템 사용됨");
+        }
         else
             Debug.Log("아이템 거부됨");
     }
