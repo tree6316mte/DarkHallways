@@ -33,7 +33,7 @@ public class ItemHandler : MonoBehaviour
 
     public void OnUseItem()
     {
-        useItemEvent?.Invoke(itemInstance.itemCode);
+        useItemEvent?.Invoke(this);
     }
 
     public string GetItemName()
