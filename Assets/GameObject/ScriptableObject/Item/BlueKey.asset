@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 368720308fb11674b81521f301dce2a7, type: 3}
   m_Name: BlueKey
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: "\uD30C\uB780 \uC5F4\uC1E0"
   itemDescription: 
   itemCode: 11
-  isOwnered: 0
+  isThereCam: 0

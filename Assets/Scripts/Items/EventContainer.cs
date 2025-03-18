@@ -31,6 +31,12 @@ public class EventContainer : MonoBehaviour
         Debug.Log("UnLock 호출됨");
     }
 
+    [ItemEvent(44)]
+    public void OpenDoor(PuzzleHandler puzzle)
+    {
+        if(puzzle.isOpen)
+            Debug.Log("문열림");
+    }
     /// <summary>
     /// 호출 시점은 Interactive Item이 레이캐스트로 부터 호출 됐을 때
     /// 호출 흐름 -> PlayerRaycast -> Interactive Item -> UseItem (ItemHandler) -> EventContainer

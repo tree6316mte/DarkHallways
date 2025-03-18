@@ -33,6 +33,7 @@ public class MovableObject : PuzzleHandler
     public override void InteractPuzzle()
     {
         Interact();
+        Destroy(this, 2f);
     }
     public override string GetDescription()
     {
@@ -43,6 +44,7 @@ public class MovableObject : PuzzleHandler
     {
         StartCoroutine(MoveCoroutine(right));
         isMoved = true;
+
     }
     
     private void DetectCamera()

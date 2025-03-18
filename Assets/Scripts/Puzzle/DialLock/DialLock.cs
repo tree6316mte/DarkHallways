@@ -26,8 +26,7 @@ public class DialLock : PuzzleHandler
     }
     private void Update()
     {
-        OpenDial();
-        InputDial();
+        if (drum.activeSelf) InputDial();
     }
     public void SetAnswer(int[] answer) // 각 다이얼 정답 지정
     {
@@ -55,7 +54,8 @@ public class DialLock : PuzzleHandler
         CheckCode();
         if (complete)
         {
-            InteractPuzzle();
+            isOpen = true;
+            drum.SetActive(false );
             gameObject.AddComponent<Rigidbody>();
             Destroy(this, 2f);
         }
@@ -68,6 +68,8 @@ public class DialLock : PuzzleHandler
     public override void InteractPuzzle()
     {
         base.InteractPuzzle();
+        Debug.Log("dial");
+        OpenDial();
     }
 
     public void InputDial()
@@ -123,9 +125,8 @@ public class DialLock : PuzzleHandler
 
     public void OpenDial()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            drum.SetActive(true);
-        }
+
+           drum.SetActive(true);
+        
     }
 }
