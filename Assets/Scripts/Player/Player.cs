@@ -33,8 +33,8 @@ public class Player : MonoBehaviour
     public void GetFlash()
     {
         // 플래시 습득시 호출
+        Debug.Log("호출 GetFlash");
         isGetFlash = true;
-        hasItem = null;
     }
 
     public void UseFlash()
@@ -48,7 +48,13 @@ public class Player : MonoBehaviour
 
     public void GetItem(ItemHandler newItem)
     {
-        Debug.Log("호출 GetItem");
+
+        if (newItem.itemCode == 0)
+        {
+            GetFlash();
+            GameObject.Destroy(newItem.gameObject);
+            return;
+        }
 
         hasItem = newItem;
         newItem.gameObject.SetActive(false);
