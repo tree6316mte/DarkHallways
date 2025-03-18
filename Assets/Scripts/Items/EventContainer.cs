@@ -50,7 +50,7 @@ public class EventContainer : MonoBehaviour
     {
         if (currentAnswer.SequenceEqual(ChessPuzzleManager.Instance.correctAnswer))
         {
-            Debug.Log("정답");
+            ChessPuzzleManager.Instance.getKeyAction?.Invoke();
         }
         else if (ChessPuzzleManager.Instance.length < (ChessPuzzleManager.Instance.count + 1))
             ChessPuzzleManager.Instance.Initialize();
