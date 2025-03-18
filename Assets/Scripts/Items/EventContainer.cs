@@ -35,10 +35,9 @@ public class EventContainer : MonoBehaviour
         chessPiece.transform.rotation = Quaternion.identity;
         chessPiece.gameObject.SetActive(true);
 
-        AddAnswer(chessPiece.GetItemName());
-        CheckAnswer(ChessPuzzleManager.Instance.currentAnswer);
-
         ChessPuzzleManager.Instance.count++;
+
+        AddAnswer(chessPiece.GetItemName());
     }
 
     private void AddAnswer(string chessPiece)
@@ -52,6 +51,8 @@ public class EventContainer : MonoBehaviour
                 ChessPuzzleManager.Instance.currentAnswer.Add(EPieceType.Queen);
                 break;
         }
+
+        CheckAnswer(ChessPuzzleManager.Instance.currentAnswer);
     }
 
     private void CheckAnswer(List<EPieceType> currentAnswer)
@@ -60,6 +61,8 @@ public class EventContainer : MonoBehaviour
         {
             Debug.Log("정답");
         }
+        else if (ChessPuzzleManager.Instance.length < (ChessPuzzleManager.Instance.count + 1))
+            ChessPuzzleManager.Instance.Initialize();
     }
 
     /// <summary>

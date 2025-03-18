@@ -31,7 +31,15 @@ public class ChessPuzzleManager : MonoBehaviour
 
         SetTransforms();
     }
-        
+     
+    public void Initialize()
+    {
+        count = 0;
+        currentAnswer = new List<EPieceType>(length);
+        transforms = new Transform[length];
+        SetTransforms();
+    }
+
     private void SetTransforms()
     {
         for (int i = 0; i < length; i++)
