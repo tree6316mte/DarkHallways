@@ -90,7 +90,7 @@ public class GameStartController : MonoBehaviour
 
     private void PlayerSetEnable()
     {
-        Camera.main.gameObject.SetActive(false);
+        Camera.main.gameObject.GetComponent<PlayerCamera>().isGameStart = true;
         player.gameObject.SetActive(true);
         playerAim.gameObject.SetActive(true);
         playerItemInfo.gameObject.SetActive(true);
