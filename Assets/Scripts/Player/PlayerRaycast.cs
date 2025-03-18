@@ -48,6 +48,8 @@ public class PlayerRaycast : MonoBehaviour
         {
             if (hit.collider != null)
                 ProcessHitCollider(hit);
+            else
+                itemInfoText.text = string.Empty;
         }
         else
             itemInfoText.text = string.Empty;
@@ -67,14 +69,17 @@ public class PlayerRaycast : MonoBehaviour
         else if (isHit)
             itemInfoText.text = itemHandler.GetInfoText(hit);
 
-        bool isInterhit = hit.collider.gameObject.TryGetComponent<InteractiveItemHandler>(out interactiveItemHandler);
+        bool isInterhit = (hit.collider.gameObject.TryGetComponent<InteractiveItemHandler>(out interactiveItemHandler) && playerItem.hasItem != null);
 
         // 상호 작용 가능한 아이템. 클릭 시 사용
-        if (isClicked && isInterhit && playerItem.hasItem != null)
+        if (isClicked && isInterhit)
+        {
             interactiveItemHandler.UseItem(playerItem.hasItem);
+            playerItem.hasItem = null;
+        }
 
         // 상호 작용 가능한지 여부를 UI 표시
-        else if (isInterhit && playerItem.hasItem != null)
+        else if (isInterhit)
             itemInfoText.text = interactiveItemHandler.ItemValidator(playerItem.hasItem);
         
         // 상호작용 가능한 퍼즐
@@ -90,6 +95,7 @@ public class PlayerRaycast : MonoBehaviour
                 door.Open();
         }
     }
+
     public void InputDetected()
     {
         isEInput = true;

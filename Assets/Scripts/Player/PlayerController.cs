@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float minXLook;
     [SerializeField] private bool CursurLockState;
     private float curCamX;
+    private bool isZoom;
+    Camera cam;
 
     private void Awake()
     {
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
         maxXLook = (maxXLook == 0) ? 50f : maxXLook;
         minXLook = (minXLook == 0) ? -30f : minXLook;
         Cursor.lockState = (CursurLockState) ? CursorLockMode.Locked : CursorLockMode.None;
+        cam = Camera.main;
     }
 
     private void FixedUpdate()
@@ -76,6 +79,11 @@ public class PlayerController : MonoBehaviour
 
         camContainer.localEulerAngles = new Vector3(-curCamX, 0, 0);
         transform.eulerAngles += new Vector3(0, curLookInput.x * lookSpeed, 0);
+
+        if (isZoom)
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 30f, 10f * Time.deltaTime);
+        else
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 60f, 10f * Time.deltaTime);
     }
 
     public void OnInteract(InputAction.CallbackContext context)
@@ -108,5 +116,13 @@ public class PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
             Player.flashAction?.Invoke();
+    }
+
+    public void OnZoom(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            isZoom = true;
+        else
+            isZoom = false;
     }
 }

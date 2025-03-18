@@ -21,7 +21,6 @@ public class ItemHandler : MonoBehaviour
     {
         eventContainer = FindFirstObjectByType<EventContainer>();
         eventContainer.GetFuctionFromItemCode(this);
-        //OnUseItem();
     }
 
     public string GetInfoText(RaycastHit hit)
