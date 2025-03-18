@@ -24,8 +24,10 @@ public class SoliloquyHandler : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, maxDistance, layerMask))
         {
+            Debug.Log("아이고난");
             if (hit.collider.TryGetComponent(out SoliloquyObject _object))
             {
+                Debug.Log("아이고난2");
                 if (coroutine != null) StopCoroutine(coroutine);
                 coroutine = StartCoroutine(ShowSoliloquy(_object.soliloquy.description));
             }
