@@ -8,4 +8,5 @@ public class Item : ScriptableObject
     public string itemName;
     public string itemDescription;
     public int itemCode;
+    public bool isThereCam;
 }

@@ -9,6 +9,7 @@ public class ItemHandler : MonoBehaviour
     internal int itemCode;
     public event Action<ItemHandler> useItemEvent;
     private EventContainer eventContainer;
+    public GameObject camPos;
 
     private void Awake()
     {
