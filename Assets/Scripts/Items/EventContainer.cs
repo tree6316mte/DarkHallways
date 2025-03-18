@@ -7,7 +7,7 @@ using UnityEngine;
 
 // 사용자 정의 속성
 [System.AttributeUsage(System.AttributeTargets.Method)]
-public class  ItemEventAttribute : System.Attribute
+public class ItemEventAttribute : System.Attribute
 {
     public int ItemCode { get; }
 
@@ -28,7 +28,7 @@ public class EventContainer : MonoBehaviour
     [ItemEvent(60)]
     public void Chess(ItemHandler itemHandler)
     {
-        
+
     }
 
     [ItemEvent(70)]
@@ -41,6 +41,7 @@ public class EventContainer : MonoBehaviour
             Debug.Log($"{fusee.fuseName} 퓨즈 사용됨");
 
             // 퓨즈가 올바르게 슬롯에 배치되었는지 확인
+            Debug.Log($"{fusee.currentSlot} 퓨즈 사용됨");
             if (fusee.IsCorrectFuse())
             {
                 Debug.Log("성공! 퓨즈가 정확한 슬롯에 삽입됨.");
@@ -50,6 +51,7 @@ public class EventContainer : MonoBehaviour
                 myItem.SetActive(true);  // myItem 다시 활성화
 
                 fusee.RemoveFromSlot();  // 퓨즈를 슬롯에서 제거
+                GameManager.Instance.player.hasItem = null;
             }
             else
             {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
+    public Player player;
     public int chapterProgress = 0;
     // Start is called before the first frame update
     void Start()

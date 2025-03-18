@@ -12,25 +12,30 @@ public class Fusee : MonoBehaviour
     public string fuseName;      // 퓨즈 이름
     public int fuseCode;         // 퓨즈 코드 
 
-    private FuseSlot currentSlot;  // 현재 퓨즈가 삽입된 슬롯
+    public FuseSlot currentSlot;  // 현재 퓨즈가 삽입된 슬롯
     private GameObject myItem;     // myItem 오브젝트
     private bool isHoldingFuse = false; // 퓨즈를 들고 있는지 여부
 
     private void Start()
     {
         // "myItem"을 자식 오브젝트에서 찾기
-        myItem = transform.Find("myItem")?.gameObject;
+        // myItem = transform.Find("myItem")?.gameObject;
 
-        // myItem이 없으면 에러 출력
-        if (myItem == null)
-        {
-            Debug.LogError("myItem 오브젝트를 찾을 수 없습니다.");
-        }
-        else
-        {
-            // myItem이 초기화될 때 활성화되도록 설정
-            myItem.SetActive(true);
-        }
+        // // myItem이 없으면 에러 출력
+        // if (myItem == null)
+        // {
+        //     Debug.LogError("myItem 오브젝트를 찾을 수 없습니다.");
+        // }
+        // else
+        // {
+        //     // myItem이 초기화될 때 활성화되도록 설정
+        //     myItem.SetActive(true);
+        // }
+    }
+
+    private void OnDisable()
+    {
+        gameObject.SetActive(true);
     }
 
     private void Update()
@@ -60,9 +65,9 @@ public class Fusee : MonoBehaviour
     {
         currentSlot = slot;
         slot.InsertFuse(this);  // 현재 퓨즈를 해당 슬롯에 삽입
-        myItem.transform.SetParent(slot.transform);  // 퓨즈를 슬롯의 자식으로 설정하여 고정
-        myItem.transform.localPosition = Vector3.zero;  // 슬롯 내에서 퓨즈의 위치를 고정
-        myItem.transform.localRotation = Quaternion.identity;  // 슬롯 내에서 퓨즈의 회전도 고정
+        gameObject.transform.SetParent(slot.transform);  // 퓨즈를 슬롯의 자식으로 설정하여 고정
+        gameObject.transform.localPosition = Vector3.zero;  // 슬롯 내에서 퓨즈의 위치를 고정
+        gameObject.transform.localRotation = Quaternion.identity;  // 슬롯 내에서 퓨즈의 회전도 고정
 
         // 퓨즈가 슬롯에 삽입되면 손에서 떨어진 상태로 처리
         isHoldingFuse = false;
@@ -77,8 +82,8 @@ public class Fusee : MonoBehaviour
         {
             currentSlot.RemoveFuse();
             currentSlot = null;
-            myItem.transform.SetParent(null);  // 슬롯에서 제거 시 부모를 null로 설정
-            myItem.SetActive(true);  // 손에 들 수 있도록 활성화
+            gameObject.transform.SetParent(null);  // 슬롯에서 제거 시 부모를 null로 설정
+            gameObject.SetActive(true);  // 손에 들 수 있도록 활성화
             Debug.Log($"{fuseName} 퓨즈가 슬롯에서 제거됨.");
         }
     }
@@ -137,6 +142,7 @@ public class Fusee : MonoBehaviour
             if (slot != null && !slot.HasFuse)
             {
                 InsertIntoSlot(slot);  // 슬롯이 비어 있으면 퓨즈 삽입
+                GameManager.Instance.player.hasItem = null;
             }
         }
     }
