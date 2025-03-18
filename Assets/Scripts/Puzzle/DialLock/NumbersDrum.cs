@@ -10,8 +10,6 @@ public class NumbersDrum : MonoBehaviour
     public GameObject drum;
     private int curCount; // 현재 번호
     public int CurCount {  get { return curCount; } }
-    private int lastCount; // 마지막으로 설정한 번호
-
     private int direction = 1;
     private float rotate = 0f;
     private float deltaRotate = 0f;
@@ -21,13 +19,12 @@ public class NumbersDrum : MonoBehaviour
     private bool rotateUp = false;
     private bool rotateDown = false;
 
-    private bool isCorrect = false;
-    public bool IsCorrect { get { return isCorrect; } }
     public int answer; // 임시 정답
 
     void Awake()
     {
         InitOffsetMassive();
+        curCount = 0;
     }
 
     // Update is called once per frame
@@ -46,11 +43,6 @@ public class NumbersDrum : MonoBehaviour
             rotate = 0.0f;
             deltaRotate = 0.0f;
         }
-
-    }
-
-    void OpenPuzzle()
-    {
 
     }
 
@@ -92,7 +84,6 @@ public class NumbersDrum : MonoBehaviour
                 rotateUp = false;
             }
         }
-        if (CheckCode()) Debug.Log("정답");
     }
 
     private void RotateDrumDown()
@@ -115,8 +106,6 @@ public class NumbersDrum : MonoBehaviour
                 rotateDown = false;
             }
         }
-        if (CheckCode()) Debug.Log("정답");
-
     }
 
     private void RotateDrum(int direction)
@@ -124,12 +113,6 @@ public class NumbersDrum : MonoBehaviour
         rotate = drum.transform.localEulerAngles.z + Time.deltaTime * direction * 80f * direction;
         drum.transform.localRotation = Quaternion.Euler(new Vector3(0f, 0f, rotate));
         deltaRotate += Time.deltaTime * 80f;
-    }
-   private bool CheckCode()
-    {
-        if (curCount == answer) isCorrect = true;
-        else isCorrect = false;
-        return isCorrect;
     }
 
     public void DownArrow()

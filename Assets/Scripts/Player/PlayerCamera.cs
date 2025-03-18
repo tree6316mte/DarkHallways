@@ -6,6 +6,7 @@ public class PlayerCamera : MonoBehaviour
 {
     GameObject camera;
     [SerializeField] private Transform player;
+    public DialLock dial;
 
     private void Awake()
     {
@@ -14,12 +15,21 @@ public class PlayerCamera : MonoBehaviour
 
     private void LateUpdate()
     {
-        updateCamera();
+        if (!dial.isDialOpen) updateCamera();
+        else DialCamera();
     }
 
     private void updateCamera()
     {
-        camera.transform.position = player.position;
-        camera.transform.rotation = player.rotation;
+        camera.transform.position = player.GetChild(1).gameObject.transform.position;
+        camera.transform.rotation = player.GetChild(1).gameObject.transform.rotation;
+        player.GetChild(0).gameObject.SetActive(true);
+    }
+
+    private void DialCamera()
+    {
+        camera.transform.position = dial.cameraPos.transform.position;
+        camera.transform.rotation = dial.cameraPos.transform.rotation;
+        player.GetChild(0).gameObject.SetActive(false);
     }
 }

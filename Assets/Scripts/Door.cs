@@ -7,6 +7,7 @@ public class Door : MonoBehaviour
     public bool isShutter; // 문인지 셔터인지
     public PuzzleHandler locker;
     public bool direction; // true면 왼쪽, false면 오른쪽
+    private bool isOpened; // 열렸는지
     void Update()
     {
         if (locker != null)
@@ -15,9 +16,20 @@ public class Door : MonoBehaviour
 
     public void Open()
     {
-        if (!isShutter)
-            StartCoroutine(OpenDoor(direction));
-        else StartCoroutine(OpenShutter());
+        if (!isOpened)
+        {
+            if (!isShutter)
+            {
+                StartCoroutine(OpenDoor(direction));
+                SoundManager.Instance.PlaySFX("DoorOpen");
+            }
+            else
+            {
+                StartCoroutine(OpenShutter());
+                SoundManager.Instance.PlaySFX("ShutterOpen");
+            }
+            isOpened = true;
+        }
     }
     private IEnumerator OpenDoor(bool direction)
     {
