@@ -10,7 +10,7 @@ public class Plant : PuzzleHandler
     private Vector3 origin;
     private Vector3 targetScale;
     public Color newColor;
-    public WaterBottle water;
+    //public WaterBottle water;
     private void Start()
     {
         origin = palm.localPosition;
@@ -27,13 +27,14 @@ public class Plant : PuzzleHandler
 
     public void WaterPlant()
     {
-        if (!isWatered && water.isFull)
+        if (!isWatered)
         {
             // 물 주는 사운드
             isWatered = true; 
             StartCoroutine(WateringPlant());
             ChangeMat();
             InteractPuzzle();
+            isOpen = true;
         }
     }
 

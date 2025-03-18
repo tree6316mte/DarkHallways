@@ -871,7 +871,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2078832678078104601, guid: 72653085a6b827f48b10b434c7972f1c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 72653085a6b827f48b10b434c7972f1c, type: 3}
 --- !u!1 &25712685
 GameObject:
@@ -2000,10 +2004,20 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 2.26
       objectReference: {fileID: 0}
+    - target: {fileID: 3307120781671989927, guid: 6420e111359ec0549ac7f27cc5d7875f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3792697781153713321, guid: 6420e111359ec0549ac7f27cc5d7875f,
         type: 3}
       propertyPath: m_Name
       value: Cable_Black
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792697781153713321, guid: 6420e111359ec0549ac7f27cc5d7875f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11251,10 +11265,20 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 2.26
       objectReference: {fileID: 0}
+    - target: {fileID: 3307120781671989927, guid: 6420e111359ec0549ac7f27cc5d7875f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3792697781153713321, guid: 6420e111359ec0549ac7f27cc5d7875f,
         type: 3}
       propertyPath: m_Name
       value: Cable_Black
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792697781153713321, guid: 6420e111359ec0549ac7f27cc5d7875f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21428,6 +21452,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaterBlock_50m
       objectReference: {fileID: 0}
+    - target: {fileID: 1507636620937791836, guid: 7097ba7ba649e1f41bba232312bdcbd8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21964,17 +21993,17 @@ PrefabInstance:
     - target: {fileID: 8036522965285467245, guid: bc1f388c9bef4a94592bc3598dae2a6d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.46
+      value: -24.94
       objectReference: {fileID: 0}
     - target: {fileID: 8036522965285467245, guid: bc1f388c9bef4a94592bc3598dae2a6d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.26
+      value: 9.64
       objectReference: {fileID: 0}
     - target: {fileID: 8036522965285467245, guid: bc1f388c9bef4a94592bc3598dae2a6d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.561
+      value: -14.44
       objectReference: {fileID: 0}
     - target: {fileID: 8036522965285467245, guid: bc1f388c9bef4a94592bc3598dae2a6d,
         type: 3}
@@ -31457,7 +31486,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2078832678078104601, guid: 72653085a6b827f48b10b434c7972f1c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 72653085a6b827f48b10b434c7972f1c, type: 3}
 --- !u!1001 &764547606
 PrefabInstance:
@@ -33609,7 +33642,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &812397803
 Transform:
   m_ObjectHideFlags: 0
@@ -35886,8 +35919,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 877623775}
-  - component: {fileID: 877623776}
-  m_Layer: 0
+  - component: {fileID: 877623777}
+  - component: {fileID: 877623778}
+  m_Layer: 4
   m_Name: Waterrrr (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35911,7 +35945,28 @@ Transform:
   - {fileID: 51801944}
   m_Father: {fileID: 1230284531}
   m_LocalEulerAnglesHint: {x: 0, y: 17.27, z: 0}
---- !u!114 &877623776
+--- !u!65 &877623777
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877623774}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.3302627, y: 0.112246886, z: 2.7871747}
+  m_Center: {x: 0.020819576, y: 1.3369901, z: 2.189955}
+--- !u!114 &877623778
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -35920,12 +35975,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 877623774}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 540b73f46966a9447abbfe5fa126d1b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ee28917a8d26e041999af7279c33d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInstance: {fileID: 11400000, guid: 6c3a1f6984f866c4d854a8c123d53031, type: 2}
-  puzzleHandler: {fileID: 0}
-  camPos: {fileID: 0}
 --- !u!1 &878239272
 GameObject:
   m_ObjectHideFlags: 0
@@ -39519,6 +39571,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaterBlock_50m
       objectReference: {fileID: 0}
+    - target: {fileID: 1507636620937791836, guid: 7097ba7ba649e1f41bba232312bdcbd8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -42628,6 +42685,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3830897734203534331, guid: 15dfe9e6444006643ab12a8984885d4c,
+        type: 3}
+      propertyPath: puzzleHandler
+      value: 
+      objectReference: {fileID: 1750856885}
+    - target: {fileID: 6918541370703143660, guid: 15dfe9e6444006643ab12a8984885d4c,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 7585621383265395134, guid: 15dfe9e6444006643ab12a8984885d4c,
         type: 3}
       propertyPath: m_Name
@@ -42639,11 +42706,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7585621383265395134, guid: 15dfe9e6444006643ab12a8984885d4c,
         type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 1686066002}
-    - targetCorrespondingSourceObject: {fileID: 7585621383265395134, guid: 15dfe9e6444006643ab12a8984885d4c,
-        type: 3}
-      insertIndex: 3
+      insertIndex: 2
       addedObject: {fileID: 1686066001}
   m_SourcePrefab: {fileID: 100100000, guid: 15dfe9e6444006643ab12a8984885d4c, type: 3}
 --- !u!1 &1097447679
@@ -44259,6 +44322,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WaterBlock_50m (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507636620937791836, guid: 7097ba7ba649e1f41bba232312bdcbd8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -52887,11 +52955,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2078832678078104601, guid: 72653085a6b827f48b10b434c7972f1c,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72653085a6b827f48b10b434c7972f1c, type: 3}
 --- !u!4 &1312797664 stripped
 Transform:
@@ -60763,7 +60827,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1532038348
 Transform:
   m_ObjectHideFlags: 0
@@ -60955,7 +61019,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4cee08c7276bf274d91d84489cdf46de, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.49999994
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4cee08c7276bf274d91d84489cdf46de, type: 3}
       propertyPath: m_LocalRotation.x
@@ -60963,7 +61027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4cee08c7276bf274d91d84489cdf46de, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.86602545
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4cee08c7276bf274d91d84489cdf46de, type: 3}
       propertyPath: m_LocalRotation.z
@@ -60971,7 +61035,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4cee08c7276bf274d91d84489cdf46de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -120
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 4cee08c7276bf274d91d84489cdf46de, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -60980,7 +61044,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: 4cee08c7276bf274d91d84489cdf46de,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2055649006}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: 4cee08c7276bf274d91d84489cdf46de,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2055649005}
   m_SourcePrefab: {fileID: 100100000, guid: 4cee08c7276bf274d91d84489cdf46de, type: 3}
 --- !u!4 &1534747138 stripped
 Transform:
@@ -66527,10 +66599,20 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 2.26
       objectReference: {fileID: 0}
+    - target: {fileID: 3307120781671989927, guid: 6420e111359ec0549ac7f27cc5d7875f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3792697781153713321, guid: 6420e111359ec0549ac7f27cc5d7875f,
         type: 3}
       propertyPath: m_Name
       value: Cable_Black
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792697781153713321, guid: 6420e111359ec0549ac7f27cc5d7875f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -66662,25 +66744,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1686065996}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c025e3594961bc41aa3334507134bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puzzle: {fileID: 0}
+  isOpen: 0
   isFull: 0
---- !u!114 &1686066002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1686065996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff478d5fad5ce084a917b55a62a03a8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemInstance: {fileID: 0}
 --- !u!1001 &1687211534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70085,6 +70156,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WaterBlock_50m
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507636620937791836, guid: 7097ba7ba649e1f41bba232312bdcbd8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -76517,8 +76593,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1967967347}
-  - component: {fileID: 1967967348}
-  m_Layer: 0
+  - component: {fileID: 1967967349}
+  - component: {fileID: 1967967350}
+  m_Layer: 4
   m_Name: Waterrrr (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76542,7 +76619,28 @@ Transform:
   - {fileID: 1167096156}
   m_Father: {fileID: 1230284531}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1967967348
+--- !u!65 &1967967349
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967967346}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.8193145, y: 0.063564844, z: 1.3737922}
+  m_Center: {x: -0.36413446, y: 1.3656424, z: 1.7210459}
+--- !u!114 &1967967350
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76551,12 +76649,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1967967346}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 540b73f46966a9447abbfe5fa126d1b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ee28917a8d26e041999af7279c33d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInstance: {fileID: 11400000, guid: 6c3a1f6984f866c4d854a8c123d53031, type: 2}
-  puzzleHandler: {fileID: 0}
-  camPos: {fileID: 0}
 --- !u!1001 &1971640816
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76645,8 +76740,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1973142864}
-  - component: {fileID: 1973142865}
-  m_Layer: 0
+  - component: {fileID: 1973142866}
+  - component: {fileID: 1973142867}
+  m_Layer: 4
   m_Name: Waterrrr (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76670,7 +76766,28 @@ Transform:
   - {fileID: 2065276655}
   m_Father: {fileID: 1230284531}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &1973142865
+--- !u!65 &1973142866
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973142863}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.160094, y: 0.07907877, z: 1.2578506}
+  m_Center: {x: -0.42054236, y: 1.399734, z: 1.6632723}
+--- !u!114 &1973142867
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76679,12 +76796,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1973142863}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 540b73f46966a9447abbfe5fa126d1b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ee28917a8d26e041999af7279c33d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInstance: {fileID: 11400000, guid: 6c3a1f6984f866c4d854a8c123d53031, type: 2}
-  puzzleHandler: {fileID: 0}
-  camPos: {fileID: 0}
 --- !u!1001 &1973155147
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79724,6 +79838,48 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2050824043}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2055649002 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 4cee08c7276bf274d91d84489cdf46de,
+    type: 3}
+  m_PrefabInstance: {fileID: 1534747137}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2055649005
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055649002}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.769574, y: 4.755562, z: 0.27}
+  m_Center: {x: 1.3070115, y: 0.00000011920929, z: 0}
+--- !u!114 &2055649006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055649002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fd8114f732a4e74383d4b81941e9385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isShutter: 0
+  locker: {fileID: 0}
+  direction: 1
 --- !u!1 &2057178322
 GameObject:
   m_ObjectHideFlags: 0
@@ -80440,6 +80596,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1765179246660778902, guid: 56219aa66c6e83e45b79b105ff980185,
+        type: 3}
+      propertyPath: itemInstance
+      value: 
+      objectReference: {fileID: 11400000, guid: f467268bac5661246bfa98c1f98d95cb,
+        type: 2}
     - target: {fileID: 5609611996323775957, guid: 56219aa66c6e83e45b79b105ff980185,
         type: 3}
       propertyPath: water
@@ -84503,6 +84665,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaterBlock_50m
       objectReference: {fileID: 0}
+    - target: {fileID: 1507636620937791836, guid: 7097ba7ba649e1f41bba232312bdcbd8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -85178,10 +85345,20 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 2.26
       objectReference: {fileID: 0}
+    - target: {fileID: 3307120781671989927, guid: 6420e111359ec0549ac7f27cc5d7875f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3792697781153713321, guid: 6420e111359ec0549ac7f27cc5d7875f,
         type: 3}
       propertyPath: m_Name
       value: Cable_Black
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792697781153713321, guid: 6420e111359ec0549ac7f27cc5d7875f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -85317,15 +85494,37 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1159685161528694144}
-  - component: {fileID: 8807915570529406968}
-  m_Layer: 0
+  - component: {fileID: 8807915570529406969}
+  - component: {fileID: 8807915570529406970}
+  m_Layer: 4
   m_Name: Waterrrr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8807915570529406968
+--- !u!65 &8807915570529406969
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8807915570529406967}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 6.669388, y: 0.10730425, z: 2.778842}
+  m_Center: {x: -1.7540654, y: 1.3473715, z: 0.8894198}
+--- !u!114 &8807915570529406970
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85334,12 +85533,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8807915570529406967}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 540b73f46966a9447abbfe5fa126d1b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ee28917a8d26e041999af7279c33d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInstance: {fileID: 11400000, guid: 6c3a1f6984f866c4d854a8c123d53031, type: 2}
-  puzzleHandler: {fileID: 0}
-  camPos: {fileID: 0}
 --- !u!33 &8819287079017353692
 MeshFilter:
   m_ObjectHideFlags: 0
