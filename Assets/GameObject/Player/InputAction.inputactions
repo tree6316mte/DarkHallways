@@ -60,6 +60,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Soliloquy",
+                    "type": "Button",
+                    "id": "f523ba06-8e7e-4ee3-916a-f8e982824c53",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Flash",
                     "type": "Button",
                     "id": "bbe63b27-aa05-494d-8ee9-c1199fd5167b",
@@ -172,7 +181,7 @@
                 {
                     "name": "",
                     "id": "05aa60b0-be87-4a2f-ba10-c08150fbc28b",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/g",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -188,6 +197,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Flash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4832fa53-577d-45ce-ae3d-e06a4897b02b",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Soliloquy",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
