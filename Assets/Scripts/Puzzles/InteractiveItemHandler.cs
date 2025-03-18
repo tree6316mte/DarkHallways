@@ -1,23 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class InteractiveItemHandler : MonoBehaviour
 {
-    public InteractiveItem interactiveItem;
+    public InteractiveItem itemInstance;
 
     private string validStr;
 
-    public void UseItem(Item usedItem)
+    public void UseItem(ItemHandler usedItem)
     {
-        if (usedItem.itemCode == interactiveItem.itemCode)
+        if (usedItem.itemInstance.itemCode == itemInstance.itemCode)
+        {
+            usedItem.OnUseItem();
             Debug.Log("아이템 사용됨");
+        }
         else
             Debug.Log("아이템 거부됨");
     }
 
-    public string ItemValidator(Item usedItem)
+    public string ItemValidator(ItemHandler usedItem)
     {
-        return validStr = (usedItem.itemCode == interactiveItem.itemCode) ? "사용 가능" : "사용 불가능" ;
+        return validStr = (usedItem.itemInstance.itemCode == itemInstance.itemCode) ? "사용 가능" : "사용 불가능" ;
     }
 }

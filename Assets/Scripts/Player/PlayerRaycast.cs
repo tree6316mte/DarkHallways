@@ -1,47 +1,52 @@
+using Cinemachine;
 using System;
 using TMPro;
 using UnityEngine;
 
 public class PlayerRaycast : MonoBehaviour
 {
-    // Ray
+    [Header("Ray")]
     private Ray ray;
     private RaycastHit hit;
     private float maxDistance = 5f;
     public LayerMask layerMask;
 
-    // Pivot
-    [SerializeField] Transform camPivot;
+    [Header("Cinemachine Camera")]
+    public CinemachineVirtualCamera playerCam;
+    public CinemachineVirtualCamera objectCam;
 
-    // Item
+    [Header("CamPivot")]
+    [SerializeField] Transform playerCamPivot;
+    [SerializeField] Transform objectCamPivot;
+
+    [Header("Item")]
     private ItemHandler itemHandler;
     [SerializeField] private TextMeshProUGUI itemInfoText;
-    public static Action inputDetect;
+    public static Action interactAction;
     private bool isEInput;
     Player playerItem;
 
-    // InteractiveItem
+    [Header("InteractiveItem")]
     private InteractiveItemHandler interactiveItemHandler;
     private bool isClicked;
     public static Action clickAction;
-
 
     private void Start()
     {
         playerItem = GetComponent<Player>();
 
-        inputDetect += InputDetected;
+        interactAction += InputDetected;
         clickAction += ClickDetected;
 
         isEInput = false;
         isClicked = false;
-        if (camPivot == null)
-            camPivot = transform.Find("CamPivot");
+        if (playerCamPivot == null)
+            playerCamPivot = transform.Find("CamPivot");
     }
 
     private void Update()
     {
-        ray = new Ray(camPivot.position, camPivot.forward);
+        ray = new Ray(playerCamPivot.position, playerCamPivot.forward);
         Debug.DrawRay(ray.origin, ray.direction * maxDistance, Color.green);
 
         if (Physics.Raycast(ray, out hit, maxDistance, layerMask))
@@ -57,22 +62,43 @@ public class PlayerRaycast : MonoBehaviour
 
     private void ProcessHitCollider(RaycastHit hit)
     {
-        // ItemHandler, UI에 Item 정보를 띄우거나 해당 아이템 습득
-        if (isEInput && playerItem.hasItem == null && hit.collider.gameObject.TryGetComponent<ItemHandler>(out itemHandler))
+        bool isHit = hit.collider.gameObject.TryGetComponent<ItemHandler>(out itemHandler);
+
+        // 주울 수 있는 아이템
+        if (isEInput && isHit && playerItem.hasItem == null && !itemHandler.itemInstance.isThereCam)
             playerItem.GetItem(itemHandler);
 
-        else if (hit.collider.gameObject.TryGetComponent<ItemHandler>(out itemHandler))
+        // 키패드같이 카메라 전환이 필요한 아이템
+        else if (isClicked && isHit && itemHandler.itemInstance.isThereCam)
+            SwitchCameraPlayerToObject();
+
+        // 아이템 정보 UI 표시
+        else if (isHit)
             itemInfoText.text = itemHandler.GetInfoText(hit);
 
-        // interactiveItemHandler
-        if (isClicked && (playerItem.hasItem != null) && hit.collider.gameObject.TryGetComponent<InteractiveItemHandler>(out interactiveItemHandler))
-        {
-            if (interactiveItemHandler.interactiveItem != null)
-                interactiveItemHandler.UseItem(playerItem.hasItem);
-        }
+        bool isInterhit = hit.collider.gameObject.TryGetComponent<InteractiveItemHandler>(out interactiveItemHandler);
 
-        else if (playerItem.hasItem != null && hit.collider.gameObject.TryGetComponent<InteractiveItemHandler>(out interactiveItemHandler))
+        // 상호 작용 가능한 아이템. 클릭 시 사용
+        if (isClicked && isInterhit && playerItem.hasItem != null)
+            interactiveItemHandler.UseItem(playerItem.hasItem);
+
+        // 상호 작용 가능한지 여부를 UI 표시
+        else if (isInterhit && playerItem.hasItem != null)
             itemInfoText.text = interactiveItemHandler.ItemValidator(playerItem.hasItem);
+    }
+
+    private void SwitchCameraPlayerToObject()
+    {
+        Debug.Log("호출 됨 : SwitchCameraPlayerToObject");
+
+        if (itemHandler.itemInstance.isThereCam && itemHandler.camPos != null)
+        {
+            playerCam.Priority = 0;
+            objectCam.Priority = 10;
+            objectCam.transform.position = objectCamPivot.transform.position;
+        }
+        else
+            Debug.LogWarning("예외 발생 : SwitchCameraPlayerToObject");
     }
 
     public void InputDetected()

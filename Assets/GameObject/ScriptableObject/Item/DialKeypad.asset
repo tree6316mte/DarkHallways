@@ -10,11 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 368720308fb11674b81521f301dce2a7, type: 3}
-  m_Name: Temp
+  m_Name: DialKeypad
   m_EditorClassIdentifier: 
-  itemName: Temp
-  itemDescription: "\uC784\uC2DC \uC544\uC774\uD15C\uC785\uB2C8\uB2E4."
-  itemCode: -1
-  onUse:
-    m_PersistentCalls:
-      m_Calls: []
+  itemName: "\uB2E4\uC774\uC5BC \uD0A4\uD328\uB4DC"
+  itemDescription: "\uBC88\uD638\uB97C \uB20C\uB7EC \uC785\uB825\uD569\uB2C8\uB2E4."
+  itemCode: 100
+  isThereCam: 1
