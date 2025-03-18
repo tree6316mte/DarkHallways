@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,22 @@ using UnityEngine;
 public class ItemHandler : MonoBehaviour
 {
     public Item itemInstance;
+    internal int itemCode;
+    public event Action<ItemHandler> useItemEvent;
+    private EventContainer eventContainer;
+    public GameObject camPos;
+
+    private void Awake()
+    {
+        itemCode = itemInstance.itemCode;
+    }
+
+    private void Start()
+    {
+        eventContainer = FindFirstObjectByType<EventContainer>();
+        eventContainer.GetFuctionFromItemCode(this);
+        OnUseItem();
+    }
 
     public string GetInfoText(RaycastHit hit)
     {
@@ -13,6 +30,11 @@ public class ItemHandler : MonoBehaviour
             return GetItemInfo();
         }
         return string.Empty;
+    }
+
+    public void OnUseItem()
+    {
+        useItemEvent?.Invoke(this);
     }
 
     public string GetItemName()

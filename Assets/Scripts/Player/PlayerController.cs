@@ -7,11 +7,11 @@ using UnityEngine.Rendering.UI;
 
 public class PlayerController : MonoBehaviour
 {
-
     [Header("Move")]
     public float speed;
     private Vector2 curMoveInput;
     private Rigidbody _rigidbody;
+    private bool isSprint;
 
     [Header("Look")]
     private Vector2 curLookInput;
@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
     {
         // Move
         _rigidbody = GetComponent<Rigidbody>();
-        speed = (speed == 0) ? 5f : speed;
 
         // Look
         lookSpeed = 0.3f;
@@ -58,6 +57,7 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         Vector3 vec = transform.forward * curMoveInput.y + transform.right * curMoveInput.x;
+        speed = (isSprint) ? 6f : 3f;
         vec *= speed;
         vec.y = _rigidbody.velocity.y;
 
@@ -67,7 +67,6 @@ public class PlayerController : MonoBehaviour
     public void OnLook(InputAction.CallbackContext context)
     {
         curLookInput = context.ReadValue<Vector2>();
-
     }
 
     private void Look()
@@ -82,12 +81,32 @@ public class PlayerController : MonoBehaviour
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
-            PlayerRaycast.inputDetect?.Invoke();
+            PlayerRaycast.interactAction?.Invoke();
     }
 
     public void OnClicked(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
             PlayerRaycast.clickAction?.Invoke();
+    }
+
+    public void OnThrowItem(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+            Player.throwAction?.Invoke();
+    }
+
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            isSprint = true;
+        else
+            isSprint = false;
+    }
+
+    public void OnFlash(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+            Player.flashAction?.Invoke();
     }
 }

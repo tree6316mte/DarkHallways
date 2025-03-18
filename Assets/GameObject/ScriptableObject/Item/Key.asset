@@ -10,23 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 368720308fb11674b81521f301dce2a7, type: 3}
-  m_Name: FlashLight
+  m_Name: Key
   m_EditorClassIdentifier: 
-  itemName: "\uC190\uC804\uB4F1"
-  itemDescription: "\uC5B4\uB450\uC6B4\uACF3\uC744 \uBE44\uCDB0\uC900\uB2E4 (E\uB97C
-    \uB20C\uB7EC \uC90D\uAE30)"
-  itemCode: 0
+  itemName: "\uC5F4\uC1E0"
+  itemDescription: "\uD3C9\uBC94\uD55C \uC5F4\uC1E0\uC785\uB2C8\uB2E4."
+  itemCode: 1
   onUse:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2823412964476723962, guid: b0250c6c35360384fa7e9e47f0f09d30,
-          type: 3}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: GetFlash
-        m_Mode: 1
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
