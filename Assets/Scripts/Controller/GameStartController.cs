@@ -3,15 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameStartCameraController : MonoBehaviour
+public class GameStartController : MonoBehaviour
 {
+    public GameObject player;
+    public GameObject playerAim;
+    public GameObject playerItemInfo;
     public CanvasGroup fadeout;
     public List<Transform> cameraTransformList;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(CoroutineCameraMove());
+        switch (GameManager.Instance.chapterProgress)
+        {
+            case 0:
+                StartCoroutine(CoroutineCameraMove());
+                break;
+            case 1:
+                PlayerSetEnable();
+                break;
+            case 2:
+                PlayerSetEnable();
+                break;
+            case 3:
+                PlayerSetEnable();
+                break;
+            default:
+                StartCoroutine(CoroutineCameraMove());
+                break;
+        }
     }
     private IEnumerator CoroutineCameraMove()
     {
@@ -33,6 +53,11 @@ public class GameStartCameraController : MonoBehaviour
         yield return StartCoroutine(CoroutineCanvasGroupAlpha(fadeout, 0f, 1f));
 
         // fadeout.gameObject.SetActive(false);
+        PlayerSetEnable();
+
+
+        yield return StartCoroutine(CoroutineCanvasGroupAlpha(fadeout, 1f, 0f));
+
 
     }
     private IEnumerator CoroutineObjectMove(GameObject _object, Transform startPos, Transform endPos)
@@ -61,5 +86,13 @@ public class GameStartCameraController : MonoBehaviour
             yield return null;
         }
         canvasGroup.alpha = endAlpha;
+    }
+
+    private void PlayerSetEnable()
+    {
+        Camera.main.gameObject.SetActive(false);
+        player.gameObject.SetActive(true);
+        playerAim.gameObject.SetActive(true);
+        playerItemInfo.gameObject.SetActive(true);
     }
 }

@@ -101,11 +101,11 @@ public class GameEscUI : BaseUI
     private void SetBGM(int value)
     {
         PlayerPrefs.SetInt(SoundManager.Instance.bgmHash, value);
-        SoundManager.Instance.bgmPlayer.volume = value / 100f;
+        SoundManager.Instance.SetBGMVolume(value / 100f);
     }
     private void SetSFX(int value)
     {
         PlayerPrefs.SetInt(SoundManager.Instance.sfxHash, value);
-        SoundManager.Instance.sfxPlayer.volume = value / 100f;
+        SoundManager.Instance.SetSFXVolume(value / 100f);
     }
 }

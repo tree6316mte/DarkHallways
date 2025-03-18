@@ -11,13 +11,8 @@ public class PlayerRaycast : MonoBehaviour
     private float maxDistance = 5f;
     public LayerMask layerMask;
 
-    [Header("Cinemachine Camera")]
-    public CinemachineVirtualCamera playerCam;
-    public CinemachineVirtualCamera objectCam;
-
     [Header("CamPivot")]
     [SerializeField] Transform playerCamPivot;
-    [SerializeField] Transform objectCamPivot;
 
     [Header("Item")]
     private ItemHandler itemHandler;
@@ -68,10 +63,6 @@ public class PlayerRaycast : MonoBehaviour
         if (isEInput && isHit && playerItem.hasItem == null && !itemHandler.itemInstance.isThereCam)
             playerItem.GetItem(itemHandler);
 
-        // 키패드같이 카메라 전환이 필요한 아이템
-        else if (isClicked && isHit && itemHandler.itemInstance.isThereCam)
-            SwitchCameraPlayerToObject();
-
         // 아이템 정보 UI 표시
         else if (isHit)
             itemInfoText.text = itemHandler.GetInfoText(hit);
@@ -86,21 +77,6 @@ public class PlayerRaycast : MonoBehaviour
         else if (isInterhit && playerItem.hasItem != null)
             itemInfoText.text = interactiveItemHandler.ItemValidator(playerItem.hasItem);
     }
-
-    private void SwitchCameraPlayerToObject()
-    {
-        Debug.Log("호출 됨 : SwitchCameraPlayerToObject");
-
-        if (itemHandler.itemInstance.isThereCam && itemHandler.camPos != null)
-        {
-            playerCam.Priority = 0;
-            objectCam.Priority = 10;
-            objectCam.transform.position = objectCamPivot.transform.position;
-        }
-        else
-            Debug.LogWarning("예외 발생 : SwitchCameraPlayerToObject");
-    }
-
     public void InputDetected()
     {
         isEInput = true;

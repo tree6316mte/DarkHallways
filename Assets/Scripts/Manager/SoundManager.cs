@@ -7,8 +7,11 @@ public class SoundManager : MonoSingleton<SoundManager>
     public string sfxHash = "SFX_Value";
 
     private Dictionary<string, AudioClip> soundDict;    // SFX와 BGM을 저장할 Dictionary
-    public AudioSource bgmPlayer;                       // BGM 재생용 AudioSource
-    public AudioSource sfxPlayer;                       // SFX 재생용 AudioSource
+    [SerializeField] private AudioSource bgmPlayer;                       // BGM 재생용 AudioSource
+    [SerializeField] private AudioSource sfxPlayer;                       // SFX 재생용 AudioSource
+
+    public float bgmVolume;                       // BGM 재생 볼륨
+    public float sfxVolume;                       // SFX 재생 볼륨
 
     [Header("Audio Clips")]
     [SerializeField] private AudioClip[] audioClips;    // 오디오 클립 배열
@@ -37,6 +40,29 @@ public class SoundManager : MonoSingleton<SoundManager>
         {
             soundDict[clip.name] = clip;
         }
+    }
+
+    public void SetBGMPlayer(AudioSource player)
+    {
+        bgmPlayer = player;
+        bgmPlayer.volume = bgmVolume;
+    }
+
+    public void SetSFXPlayer(AudioSource player)
+    {
+        sfxPlayer = player;
+        sfxPlayer.volume = sfxVolume;
+    }
+
+    public void SetBGMVolume(float volume)
+    {
+        bgmVolume = volume;
+        bgmPlayer.volume = volume;
+    }
+    public void SetSFXVolume(float volume)
+    {
+        sfxVolume = volume;
+        sfxPlayer.volume = volume;
     }
 
     // SFX 재생
