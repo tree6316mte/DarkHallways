@@ -32,10 +32,20 @@ public class EventContainer : MonoBehaviour
     }
 
     [ItemEvent(11)]
-    public void OpenDoor(PuzzleHandler puzzle)
+    public void OpenDoor11(ItemHandler itemHandler)
     {
-        if(puzzle.isOpen)
-            Debug.Log("문열림");
+        OpenDoor(itemHandler);
+    }
+    [ItemEvent(22)]
+    public void OpenDoor22(ItemHandler itemHandler)
+    {
+        OpenDoor(itemHandler);
+    }
+    public void OpenDoor(ItemHandler itemHandler)
+    {
+        PuzzleHandler puzzle = itemHandler.puzzleHandler;
+        puzzle.isOpen = true;
+        puzzle.InteractPuzzle();
     }
     /// <summary>
     /// 호출 시점은 Interactive Item이 레이캐스트로 부터 호출 됐을 때

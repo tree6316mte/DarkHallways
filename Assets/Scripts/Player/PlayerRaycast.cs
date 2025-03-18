@@ -77,12 +77,14 @@ public class PlayerRaycast : MonoBehaviour
         else if (isInterhit && playerItem.hasItem != null)
             itemInfoText.text = interactiveItemHandler.ItemValidator(playerItem.hasItem);
         
-        if(isClicked && hit.collider.gameObject.TryGetComponent<PuzzleHandler>(out PuzzleHandler puzzleHandler))
+        // 상호작용 가능한 퍼즐
+        else if(isClicked && hit.collider.gameObject.TryGetComponent<PuzzleHandler>(out PuzzleHandler puzzleHandler))
         {
             Debug.Log("puzzleHandler");
             puzzleHandler.InteractPuzzle();
         }
-        if (hit.collider.gameObject.TryGetComponent<Door>(out Door door))
+        // 잠금 장치가 없는 문 열기 
+        else if (hit.collider.gameObject.TryGetComponent<Door>(out Door door))
         {
             if (isClicked && door.locker == null)
                 door.Open();
