@@ -9,6 +9,7 @@ public class PadLock : PuzzleHandler
         base.InteractPuzzle();
         if (isOpen)
         {
+            SoundManager.Instance.PlaySFX("Padlock");
             gameObject.AddComponent<Rigidbody>();
             Destroy(this, 2f);
         }
