@@ -81,7 +81,11 @@ public class PlayerRaycast : MonoBehaviour
         {
             Debug.Log("puzzleHandler");
             puzzleHandler.InteractPuzzle();
-
+        }
+        if (hit.collider.gameObject.TryGetComponent<Door>(out Door door))
+        {
+            if (isClicked && door.locker == null)
+                door.Open();
         }
     }
     public void InputDetected()

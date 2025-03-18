@@ -6,13 +6,7 @@ public class Door : MonoBehaviour
 {
     public bool isShutter; // 문인지 셔터인지
     public PuzzleHandler locker; 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         if (locker != null)

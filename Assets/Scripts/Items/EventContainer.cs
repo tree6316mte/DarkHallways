@@ -31,7 +31,7 @@ public class EventContainer : MonoBehaviour
         Debug.Log("UnLock 호출됨");
     }
 
-    [ItemEvent(44)]
+    [ItemEvent(11)]
     public void OpenDoor(PuzzleHandler puzzle)
     {
         if(puzzle.isOpen)
