@@ -91,6 +91,19 @@ public class UIManager : MonoSingleton<UIManager>
         option.Setup();
     }
 
+
+    /// <summary>
+    /// 옵션 메뉴 UI 호출
+    /// </summary>
+    /// <param name="message">팝업 메시지</param>
+    /// <param name="onConfirmAction">확인 버튼 동작</param>
+    /// <param name="onCancelAction">취소 버튼 동작</param>
+    public void ShowGameEsc()
+    {
+        var gameEscUI = ShowUI<GameEscUI>();
+        gameEscUI.Setup(0);
+    }
+
     /// <summary>
     /// 특정 UI 제거
     /// </summary>

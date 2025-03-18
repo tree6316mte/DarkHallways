@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/PJW/PJW_MainScene.unity
+    guid: 0c64e939b6e976d46b6949f42cfe42b4
+  - enabled: 1
+    path: Assets/Scenes/PJW/PJW_EndingScene.unity
+    guid: c1669b727a1a3e248b7c50f37cdbf454
   m_configObjects: {}
