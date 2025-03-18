@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 // 사용자 정의 속성
 [System.AttributeUsage(System.AttributeTargets.Method)]
@@ -25,10 +27,39 @@ public class EventContainer : MonoBehaviour
         Debug.Log($"아이템 코드 : {itemHandler.itemCode}");
     }
 
-    [ItemEvent(1)]
-    public void UnLock(ItemHandler itemHandler)
+    [ItemEvent(60)]
+    public void PlacePieces(ItemHandler chessPiece)
     {
-        Debug.Log("UnLock 호출됨");
+        chessPiece.transform.SetParent(null);
+        chessPiece.transform.position = ChessPuzzleManager.Instance.transforms[ChessPuzzleManager.Instance.count].transform.position;
+        chessPiece.transform.rotation = Quaternion.identity;
+        chessPiece.gameObject.SetActive(true);
+
+        AddAnswer(chessPiece.GetItemName());
+        CheckAnswer(ChessPuzzleManager.Instance.currentAnswer);
+
+        ChessPuzzleManager.Instance.count++;
+    }
+
+    private void AddAnswer(string chessPiece)
+    {
+        switch(chessPiece)
+        {
+            case "비숍":
+                ChessPuzzleManager.Instance.currentAnswer.Add(EPieceType.Bishop);
+                break;
+            case "퀸":
+                ChessPuzzleManager.Instance.currentAnswer.Add(EPieceType.Queen);
+                break;
+        }
+    }
+
+    private void CheckAnswer(List<EPieceType> currentAnswer)
+    {
+        if (currentAnswer.SequenceEqual(ChessPuzzleManager.Instance.correctAnswer))
+        {
+            Debug.Log("정답");
+        }
     }
 
     /// <summary>
@@ -36,6 +67,7 @@ public class EventContainer : MonoBehaviour
     /// 호출 흐름 -> PlayerRaycast -> Interactive Item -> UseItem (ItemHandler) -> EventContainer
     /// </summary>
 
+    #region 메소드 등록 자동화
     private Dictionary<int, Action<ItemHandler>> eventDictionary;
 
     private void Awake()
@@ -44,7 +76,6 @@ public class EventContainer : MonoBehaviour
         Debug.Log($"등록된 이벤트 갯수 : {eventDictionary.Count}");
     }
 
-    #region 메소드 등록 자동화
     private void InitializeEventDictionary()
     {
         // eventDictionary 초기화
@@ -57,7 +88,7 @@ public class EventContainer : MonoBehaviour
         {
             // 메소드가 커스텀 속성을 사용하고 있는지 검사
             ItemEventAttribute itemAttribute = (ItemEventAttribute)Attribute.GetCustomAttribute(method, typeof(ItemEventAttribute));
-            if (itemAttribute != null && ValidateMethod(method))
+            if (itemAttribute != null)
             {
                 // ItemHandler 대리자를 만듦, 인스턴스는 이 클래스를 던지고, 메소드 정보는 메소드를 순회하며 던짐
                 Action<ItemHandler> action = (Action<ItemHandler>)Delegate.CreateDelegate(typeof(Action<ItemHandler>), this, method);
@@ -67,18 +98,12 @@ public class EventContainer : MonoBehaviour
         }
     }
 
-    private bool ValidateMethod(MethodInfo method)
-    {
-        ParameterInfo[] parameters = method.GetParameters();
-        return (parameters.Length == 1 && parameters[0].ParameterType == typeof(ItemHandler));
-    }
-
     public void GetFuctionFromItemCode(ItemHandler itemHandler)
     {
         if (eventDictionary.TryGetValue(itemHandler.itemCode, out Action<ItemHandler> action))
             itemHandler.useItemEvent += action;
-        else
-            Debug.LogWarning($"연결된 함수 찾을 수 없음 : {itemHandler.gameObject.name}");
+        //else
+        //    Debug.LogWarning($"연결된 함수 찾을 수 없음 : {itemHandler.gameObject.name}");
     }
     #endregion
 }
