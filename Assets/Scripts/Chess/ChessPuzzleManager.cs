@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public enum EPieceType
 {
@@ -17,6 +18,8 @@ public class ChessPuzzleManager : MonoBehaviour
     public List<EPieceType> currentAnswer;
     public Transform[] transforms;
     internal int count;
+    public Action getKeyAction;
+    public GameObject key;
 
     private void Awake()
     {
@@ -25,13 +28,15 @@ public class ChessPuzzleManager : MonoBehaviour
         else
             Destroy(this);
 
+        getKeyAction += GetKey;
+
         count = 0;
         currentAnswer = new List<EPieceType>(length);
         transforms = new Transform[length];
 
         SetTransforms();
     }
-     
+
     public void Initialize()
     {
         count = 0;
@@ -49,5 +54,10 @@ public class ChessPuzzleManager : MonoBehaviour
             else
                 Debug.LogWarning("Pivot 갯수가 부족합니다.");
         }
+    }
+
+    public void GetKey()
+    {
+        key.SetActive(true);
     }
 }

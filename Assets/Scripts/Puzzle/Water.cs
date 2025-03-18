@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Water : MonoBehaviour
 {
+    [SerializeField] private Transform savePoint;
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.layer == 6)
         {
-            //플레이어 사망
+            other.transform.position = savePoint.position;
             SoundManager.Instance.PlaySFX("Electric_Water");
         }
     }
