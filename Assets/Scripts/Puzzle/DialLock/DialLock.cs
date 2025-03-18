@@ -53,11 +53,14 @@ public class DialLock : PuzzleHandler
     public void EndDial()
     {
         CheckCode();
-        if(complete) 
+        if (complete)
+        {
             InteractPuzzle();
+            gameObject.AddComponent<Rigidbody>();
+            Destroy(this, 2f);
+        }
         Debug.Log(complete);
-        gameObject.AddComponent<Rigidbody>();
-        Destroy(this, 2f);
+
     }
 
 
@@ -71,16 +74,21 @@ public class DialLock : PuzzleHandler
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
             drums[index].UpArrow();
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow))  
             drums[index].DownArrow();
         if (Input.GetKeyDown(KeyCode.LeftArrow))
-            PrevDrum();
+        {
+            if(index != 0) PrevDrum();
+        }
         if (Input.GetKeyDown(KeyCode.RightArrow))
-            NextDrum();
+        {
+            if(index != 2) NextDrum();
+        }
+            
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            EndDial();
             drum.SetActive(false);
+            EndDial();
         }
             
     }

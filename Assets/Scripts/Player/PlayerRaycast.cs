@@ -76,6 +76,13 @@ public class PlayerRaycast : MonoBehaviour
         // 상호 작용 가능한지 여부를 UI 표시
         else if (isInterhit && playerItem.hasItem != null)
             itemInfoText.text = interactiveItemHandler.ItemValidator(playerItem.hasItem);
+        
+        if(isClicked && hit.collider.gameObject.TryGetComponent<PuzzleHandler>(out PuzzleHandler puzzleHandler))
+        {
+            Debug.Log("puzzleHandler");
+            puzzleHandler.InteractPuzzle();
+
+        }
     }
     public void InputDetected()
     {

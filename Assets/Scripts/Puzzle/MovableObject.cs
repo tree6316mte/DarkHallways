@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.LookDev;
@@ -27,11 +28,8 @@ public class MovableObject : PuzzleHandler
         startPosition = transform.position;
         camera = Camera.main;
     }
-    private void Update()
-    {
-        DetectCamera();
-        if (!isMoved && Input.GetMouseButtonDown(0)) Interact();
-    }
+
+
     public override void InteractPuzzle()
     {
         Interact();
@@ -69,12 +67,12 @@ public class MovableObject : PuzzleHandler
         }
         else if(direction == Direction.Left)
         {
-            puzzle.description = "왼쪽으로 밀기";
+            puzzle.description = "";
             right = false;
         }
-        else
+        else if(direction == Direction.Right)
         {
-            puzzle.description = "오른쪽으로 밀기";
+            puzzle.description = "";
             right = true;
         }
     }
