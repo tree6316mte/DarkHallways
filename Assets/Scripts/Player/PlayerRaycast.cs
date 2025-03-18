@@ -75,7 +75,8 @@ public class PlayerRaycast : MonoBehaviour
         if (isClicked && isInterhit)
         {
             interactiveItemHandler.UseItem(playerItem.hasItem);
-            playerItem.hasItem = null;
+            if (playerItem.hasItem.itemCode != 90)
+                playerItem.hasItem = null;
         }
 
         // 상호 작용 가능한지 여부를 UI 표시

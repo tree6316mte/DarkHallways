@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CandleController : PuzzleHandler
 {
+    public Transform shutter;
     public CandleData candleData;
     public ParticleSystem flameParticles;
     public Material flameMaterial;
@@ -62,19 +63,34 @@ public class CandleController : PuzzleHandler
                 }
             }
 
-                // 2번, 3번, 4번 캔들이 모두 켜지고 1번이 꺼져야만 문이 열려야 함
-                if (litCandleCount == requiredCandleCount && !litCandles.Contains(1))
-                {
-                    Debug.Log("문이 열렸다!");
-                    // 문이 열리는 동작 추가 가능
-                }
-                else if (litCandles.Contains(1))
-                {
-                    // 1번이 켜져 있을 때 문이 열리지 않도록 설정
-                    Debug.Log("1번 캔들이 켜져있어 문이 열리지 않음");
-                }
-            
+            // 2번, 3번, 4번 캔들이 모두 켜지고 1번이 꺼져야만 문이 열려야 함
+            if (litCandleCount == requiredCandleCount && !litCandles.Contains(1))
+            {
+                StartCoroutine(OpenShutter());
+            }
+            else if (litCandles.Contains(1))
+            {
+                // 1번이 켜져 있을 때 문이 열리지 않도록 설정
+                Debug.Log("1번 캔들이 켜져있어 문이 열리지 않음");
+            }
+
         }
+    }
+
+
+    private IEnumerator OpenShutter()
+    {
+        float elapsed = 0f;
+
+        Vector3 start = shutter.position;
+        Vector3 target = start + new Vector3(0, 5, 0);
+        while (elapsed < 2f)
+        {
+            elapsed += Time.deltaTime;
+            shutter.position = Vector3.Lerp(start, target, elapsed / 2);
+            yield return null;
+        }
+        shutter.position = target;
     }
 
     public void ToggleFlame(bool state)
