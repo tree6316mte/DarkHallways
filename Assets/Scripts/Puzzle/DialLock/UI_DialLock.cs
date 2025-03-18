@@ -16,6 +16,8 @@ public class UI_DialLock : MonoBehaviour
     private int previousIndex;
 
     public DialLock dialLock;
+
+    public Transform cameraTransform;
     private void Start()
     {
         previousIndex = dialLock.index;
