@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public enum EPieceType
 {
@@ -31,7 +31,7 @@ public class ChessPuzzleManager : MonoBehaviour
 
         SetTransforms();
     }
-     
+
     public void Initialize()
     {
         count = 0;

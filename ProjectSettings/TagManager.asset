@@ -12,6 +12,9 @@ TagManager:
   - Card
   - Water
   - Wire
+  - LockCode
+  - FuseSlot
+  - Fuse
   layers:
   - Default
   - TransparentFX

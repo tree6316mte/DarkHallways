@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
         isFlashing = false;
         throwAction += ThrowItem;
         flashAction += UseFlash;
+
+        GameManager.Instance.player = this;
     }
 
     private void DisplayHasItem()
