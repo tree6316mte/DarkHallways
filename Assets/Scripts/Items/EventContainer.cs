@@ -48,15 +48,19 @@ public class EventContainer : MonoBehaviour
         PuzzleHandler puzzle = itemHandler.puzzleHandler;
         puzzle.isOpen = true;
         puzzle.InteractPuzzle();
+        Destroy(itemHandler.gameObject);
     }
 
     [ItemEvent(33)]
     public void WaterPlant(ItemHandler itemHandler)
     {
-        if (itemHandler.puzzleHandler is Plant plant) plant.WaterPlant();
+        if (itemHandler.puzzleHandler is Plant plant)
+        {
+            plant.WaterPlant();
+            Destroy(itemHandler.gameObject);
+        }
         else return;
     }
-
     /// <summary>
     /// 호출 시점은 Interactive Item이 레이캐스트로 부터 호출 됐을 때
     /// 호출 흐름 -> PlayerRaycast -> Interactive Item -> UseItem (ItemHandler) -> EventContainer
