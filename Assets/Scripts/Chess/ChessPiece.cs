@@ -3,33 +3,27 @@ using UnityEngine;
 public class ChessPiece : MonoBehaviour
 {
     public ChessTargetPosition targetData; // 목표 위치 데이터
-    private bool isHeld = false;
-
-    private void Update()
-    {
-        if (isHeld)
-        {
-            // 마우스를 따라 이동 (예제 코드, 필요 시 조정 가능)
-            transform.position = GetMouseWorldPosition();
-
-            if (Input.GetMouseButtonDown(0)) // 좌클릭으로 놓기
-            {
-                PlacePiece();
-            }
-        }
-    }
 
     public void PickUp()
     {
-        isHeld = true;
         Debug.Log(targetData.pieceName + " 주웠음!");
     }
 
-    private void PlacePiece()
+    public void PlacePiece()
     {
-        isHeld = false;
         Debug.Log(targetData.pieceName + " 놓음!");
-        ChessPuzzleManager.Instance.CheckPlacement();
+
+        // 목표 위치와의 차이 비교
+        float distance = Vector3.Distance(transform.position, targetData.targetPosition);
+        if (distance <= targetData.placementThreshold)
+        {
+            transform.position = targetData.targetPosition; // 목표 위치에 정확히 배치
+            ChessPuzzleManager.Instance.CheckPlacement(); // 배치 확인
+        }
+        else
+        {
+            Debug.Log("잘못된 위치에 배치됨!"); // 목표 위치가 아니라면 경고
+        }
     }
 
     private Vector3 GetMouseWorldPosition()

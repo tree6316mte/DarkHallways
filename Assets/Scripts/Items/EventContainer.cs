@@ -25,10 +25,41 @@ public class EventContainer : MonoBehaviour
         Debug.Log($"아이템 코드 : {itemHandler.itemCode}");
     }
 
-    [ItemEvent(1)]
-    public void UnLock(ItemHandler itemHandler)
+    [ItemEvent(60)]
+    public void Chess(ItemHandler itemHandler)
     {
-        Debug.Log("UnLock 호출됨");
+        
+    }
+
+    [ItemEvent(70)]
+    public void Fuse(ItemHandler itemHandler)
+    {
+        Fusee fusee = itemHandler.gameObject.GetComponent<Fusee>();
+
+        if (fusee != null)
+        {
+            Debug.Log($"{fusee.fuseName} 퓨즈 사용됨");
+
+            // 퓨즈가 올바르게 슬롯에 배치되었는지 확인
+            if (fusee.IsCorrectFuse())
+            {
+                Debug.Log("성공! 퓨즈가 정확한 슬롯에 삽입됨.");
+
+                // 퓨즈가 올바르게 슬롯에 배치되었을 때, myItem이 보이게 활성화
+                GameObject myItem = itemHandler.gameObject;
+                myItem.SetActive(true);  // myItem 다시 활성화
+
+                fusee.RemoveFromSlot();  // 퓨즈를 슬롯에서 제거
+            }
+            else
+            {
+                Debug.Log("오류! 퓨즈가 잘못된 슬롯에 삽입되었습니다.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Fusee를 찾을 수 없습니다.");
+        }
     }
 
     /// <summary>

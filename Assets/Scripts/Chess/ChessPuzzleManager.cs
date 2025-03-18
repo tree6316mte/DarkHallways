@@ -1,10 +1,10 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class ChessPuzzleManager : MonoBehaviour
 {
     public static ChessPuzzleManager Instance;
-    public List<ChessPiece> chessPieces;
+    public List<ChessPiece> chessPieces; // List<> 
 
     private void Awake()
     {

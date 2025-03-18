@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac24cb1ce5a82c44aadfa35851e587ab, type: 3}
-  m_Name: FuseSlotRed
+  m_Name: FuseSlotGreen
   m_EditorClassIdentifier: 
-  interactiveItemName: "\uBE68\uAC15\uD4E8\uC988\uC2AC\uB86F"
-  itemCode: 70
+  interactiveItemName: "\uCD08\uB85D\uD4E8\uC988\uC2AC\uB86F"
+  itemCode: 71

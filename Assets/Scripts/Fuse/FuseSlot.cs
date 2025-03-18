@@ -2,35 +2,41 @@ using UnityEngine;
 
 public class FuseSlot : MonoBehaviour
 {
-    public InteractiveItem slotData;  // 이 슬롯에 들어갈 퓨즈 정보
-    private Item currentFuse;         // 현재 슬롯에 있는 퓨즈
+    private bool hasFuse;  // 퓨즈가 있는지 여부
+    private Fusee currentFuse;
 
-    public bool HasFuse => currentFuse != null;
-
-    public void InsertFuse(Item fuse)
+    // 슬롯에 퓨즈가 있는지 확인하는 속성
+    public bool HasFuse
     {
-        if (!HasFuse)  // 슬롯이 비어 있을 때만 퓨즈 삽입 가능
+        get { return hasFuse; }
+        set { hasFuse = value; }
+    }
+
+    public void InsertFuse(Fusee fusee)
+    {
+        if (!hasFuse)  // 슬롯에 퓨즈가 없으면
         {
-            currentFuse = fuse;
-            Debug.Log($"{fuse.itemName} 퓨즈가 슬롯에 삽입됨!");
-        }
-        else
-        {
-            Debug.Log("슬롯이 이미 차 있습니다!");
+            currentFuse = fusee;
+            hasFuse = true;  // 퓨즈 삽입
+            Debug.Log($"{fusee.fuseName}가 슬롯에 삽입됨.");
         }
     }
 
+    // 퓨즈를 슬롯에서 제거하는 함수
     public void RemoveFuse()
     {
         if (HasFuse)
         {
-            Debug.Log($"{currentFuse.itemName} 퓨즈가 슬롯에서 제거됨!");
+            Debug.Log($"{currentFuse.fuseName} 퓨즈가 슬롯에서 제거됨!");
+            HasFuse = false;  // 퓨즈가 슬롯에서 제거됨
             currentFuse = null;
         }
     }
 
+    // 현재 슬롯에 올바른 퓨즈가 들어있는지 확인하는 함수
     public bool IsCorrectFuse()
     {
-        return HasFuse && currentFuse.itemCode == slotData.itemCode;
+        //return currentFuse != null && currentFuse.fuseColor == correctFuseColor;
+        return true;
     }
 }

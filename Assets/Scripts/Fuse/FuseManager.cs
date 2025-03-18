@@ -11,7 +11,7 @@ public class FuseManager : MonoBehaviour
         {
             if (!slot.HasFuse || !slot.IsCorrectFuse())
             {
-                Debug.Log("퓨즈 배치가 올바르지 않습니다!");
+                Debug.Log("퓨즈 배치가 올바르지 않습니다");
                 return;
             }
         }
@@ -21,7 +21,7 @@ public class FuseManager : MonoBehaviour
 
     private void OpenDoor()
     {
-        Debug.Log("정답! 문이 열립니다!");
+        Debug.Log("문이 열립니다.");
         if (door != null)
         {
             door.SetActive(false); // 문을 비활성화 (열림)
