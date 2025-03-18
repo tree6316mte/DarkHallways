@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FuseManager : MonoBehaviour
+public class FuseManager : PuzzleHandler
 {
     public FuseSlot[] slots;  // 배치된 모든 퓨즈 슬롯
     public GameObject door;   // 퍼즐 성공 시 열릴 문
@@ -16,15 +16,17 @@ public class FuseManager : MonoBehaviour
             }
         }
 
-        OpenDoor();
+        // 정답 효과음
+        InteractPuzzle();
+        // OpenDoor();
     }
 
-    private void OpenDoor()
-    {
-        Debug.Log("문이 열립니다.");
-        if (door != null)
-        {
-            door.SetActive(false); // 문을 비활성화 (열림)
-        }
-    }
+    // private void OpenDoor()
+    // {
+    //     Debug.Log("문이 열립니다.");
+    //     if (door != null)
+    //     {
+    //         door.SetActive(false); // 문을 비활성화 (열림)
+    //     }
+    // }
 }

@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class FuseSlot : MonoBehaviour
 {
-    private bool hasFuse;  // 퓨즈가 있는지 여부
+    public FuseManager fuseManager;
+    public bool hasFuse;  // 퓨즈가 있는지 여부
     private Fusee currentFuse;
 
     // 슬롯에 퓨즈가 있는지 확인하는 속성
@@ -19,6 +20,7 @@ public class FuseSlot : MonoBehaviour
             currentFuse = fusee;
             hasFuse = true;  // 퓨즈 삽입
             Debug.Log($"{fusee.fuseName}가 슬롯에 삽입됨.");
+            if (fuseManager != null) fuseManager.CheckFuseOrder();
         }
     }
 
