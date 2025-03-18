@@ -6,9 +6,13 @@ public class PuzzleHandler : MonoBehaviour
 {
     public PuzzleData puzzle;
     public bool isOpen;
+    private Rigidbody _rigidbody;
+
     public virtual void InteractPuzzle()
     {
         isOpen = true;
+        _rigidbody = GetComponent<Rigidbody>();
+        _rigidbody.useGravity = true;
     }
 
     public virtual string GetDescription()

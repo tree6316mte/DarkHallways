@@ -7,7 +7,7 @@ public class ItemHandler : MonoBehaviour
 {
     public Item itemInstance;
     internal int itemCode;
-    public Action<ItemHandler> useItemEvent;
+    public event Action<ItemHandler> useItemEvent;
     private EventContainer eventContainer;
 
     private void Awake()

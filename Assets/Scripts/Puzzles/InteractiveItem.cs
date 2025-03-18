@@ -7,4 +7,5 @@ public class InteractiveItem : ScriptableObject
 {
     public string interactiveItemName;
     public int itemCode;
+    public Transform camPos;
 }
