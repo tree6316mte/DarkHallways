@@ -1134,6 +1134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDontDestroyOnLoad: 1
+  player: {fileID: 0}
   chapterProgress: 0
 --- !u!4 &380144018
 Transform:
@@ -3491,7 +3492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d828c3718315442b0198b2e58a3ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSceneName: GameScene_Test_Debug
+  gameSceneName: GameScene_Test_Debug 1
   endingSceneName: PJW_EndingScene
 --- !u!1 &1531811336
 GameObject:

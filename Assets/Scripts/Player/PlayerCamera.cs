@@ -8,6 +8,8 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private Transform player;
     public DialLock dial;
 
+    public bool isGameStart = false;
+
     private void Awake()
     {
         camera = this.gameObject;
@@ -15,6 +17,8 @@ public class PlayerCamera : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (!isGameStart) return;
+
         if (!dial.isDialOpen) updateCamera();
         else DialCamera();
     }
