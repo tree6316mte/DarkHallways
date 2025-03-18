@@ -7,6 +7,11 @@ TagManager:
   - CameraPivot
   - Item
   - UsableObject
+  - Lighter
+  - Slot
+  - Card
+  - Water
+  - Wire
   layers:
   - Default
   - TransparentFX
