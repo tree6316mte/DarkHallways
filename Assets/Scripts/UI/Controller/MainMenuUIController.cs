@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuUIController : MonoBehaviour
 {
+    public string gameSceneName;
     public string endingSceneName;
     public void OnClickGameStart()
     {
@@ -45,8 +46,14 @@ public class MainMenuUIController : MonoBehaviour
 
     private void GameStart()
     {
-        Debug.Log("게임시작!");
+        SceneManager.LoadScene(gameSceneName);
     }
+    private void GameContinue()
+    {
+        // SceneManager.LoadScene(endingSceneName);
+        Debug.Log("계속하기");
+    }
+
     private void GameQuit()
     {
         Debug.Log("게임종료!");
