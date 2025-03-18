@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 368720308fb11674b81521f301dce2a7, type: 3}
-  m_Name: WaterBottle
+  m_Name: WaterBottle_Plant
   m_EditorClassIdentifier: 
   itemName: "\uBB3C"
   itemDescription: "\uBB3C \uC8FC\uAE30"
-  itemCode: -3
-  isOwnered: 0
+  itemCode: 33
+  isThereCam: 0

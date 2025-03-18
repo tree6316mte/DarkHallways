@@ -6,6 +6,7 @@ using UnityEngine;
 public class ItemHandler : MonoBehaviour
 {
     public Item itemInstance;
+    public PuzzleHandler puzzleHandler;
     internal int itemCode;
     public event Action<ItemHandler> useItemEvent;
     private EventContainer eventContainer;
@@ -20,7 +21,7 @@ public class ItemHandler : MonoBehaviour
     {
         eventContainer = FindFirstObjectByType<EventContainer>();
         eventContainer.GetFuctionFromItemCode(this);
-        OnUseItem();
+        //OnUseItem();
     }
 
     public string GetInfoText(RaycastHit hit)

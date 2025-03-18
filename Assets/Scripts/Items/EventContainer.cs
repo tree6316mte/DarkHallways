@@ -31,6 +31,36 @@ public class EventContainer : MonoBehaviour
         Debug.Log("UnLock 호출됨");
     }
 
+    [ItemEvent(11)]
+    public void OpenDoor11(ItemHandler itemHandler)
+    {
+        OpenDoor(itemHandler);
+    }
+
+    [ItemEvent(22)]
+    public void OpenDoor22(ItemHandler itemHandler)
+    {
+        OpenDoor(itemHandler);
+    }
+
+    public void OpenDoor(ItemHandler itemHandler)
+    {
+        PuzzleHandler puzzle = itemHandler.puzzleHandler;
+        puzzle.isOpen = true;
+        puzzle.InteractPuzzle();
+        Destroy(itemHandler.gameObject);
+    }
+
+    [ItemEvent(33)]
+    public void WaterPlant(ItemHandler itemHandler)
+    {
+        if (itemHandler.puzzleHandler is Plant plant)
+        {
+            plant.WaterPlant();
+            Destroy(itemHandler.gameObject);
+        }
+        else return;
+    }
     /// <summary>
     /// 호출 시점은 Interactive Item이 레이캐스트로 부터 호출 됐을 때
     /// 호출 흐름 -> PlayerRaycast -> Interactive Item -> UseItem (ItemHandler) -> EventContainer

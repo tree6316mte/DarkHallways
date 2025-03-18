@@ -76,6 +76,19 @@ public class PlayerRaycast : MonoBehaviour
         // 상호 작용 가능한지 여부를 UI 표시
         else if (isInterhit && playerItem.hasItem != null)
             itemInfoText.text = interactiveItemHandler.ItemValidator(playerItem.hasItem);
+        
+        // 상호작용 가능한 퍼즐
+        else if(isClicked && hit.collider.gameObject.TryGetComponent<PuzzleHandler>(out PuzzleHandler puzzleHandler))
+        {
+            Debug.Log("puzzleHandler");
+            puzzleHandler.InteractPuzzle();
+        }
+        // 잠금 장치가 없는 문 열기 
+        else if (hit.collider.gameObject.TryGetComponent<Door>(out Door door))
+        {
+            if (isClicked && door.locker == null)
+                door.Open();
+        }
     }
     public void InputDetected()
     {
