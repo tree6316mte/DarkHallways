@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Haptics;
 using UnityEngine.UI;
 
 
@@ -9,18 +10,20 @@ public class DialLock : PuzzleHandler
 {
     public NumbersDrum[] drums;
     public int[] answers;
-
+    public bool isDialOpen;
     public int index = 0;
 
 
     private bool complete = false;
 
     public float moveSpeed = 2f;
-
+    private Vector3 originPos;
     public GameObject drum;
+    public Transform cameraPos;
 
     private void Start()
     {
+        originPos = drum.transform.position;
         index = 0;
         drum.SetActive(false);
     }
@@ -41,11 +44,15 @@ public class DialLock : PuzzleHandler
 
     public void CheckCode() // 정답 체크
     {
-        complete = false;
+        complete = true;
         for (int i = 0; i < drums.Length; i++)
         {
-            if (!drums[i].IsCorrect) return;
-            else complete = true;
+            Debug.Log(drums[i].CurCount);
+            if (drums[i].CurCount != answers[i])
+            {
+                complete = false;
+                return;
+            }
         }
     }
 
@@ -61,6 +68,7 @@ public class DialLock : PuzzleHandler
             Destroy(this, 2f);
         }
         Debug.Log(complete);
+        isDialOpen = false;
 
     }
 
@@ -69,7 +77,6 @@ public class DialLock : PuzzleHandler
     public override void InteractPuzzle()
     {
         base.InteractPuzzle();
-        Debug.Log("dial");
         OpenDial();
     }
 
@@ -90,6 +97,7 @@ public class DialLock : PuzzleHandler
             
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            InitDrum();
             drum.SetActive(false);
             EndDial();
         }
@@ -128,8 +136,14 @@ public class DialLock : PuzzleHandler
 
     public void OpenDial()
     {
+        index = 0;
+        drum.SetActive(true);
+        isDialOpen = true;
+    }
 
-           drum.SetActive(true);
-        
+    public void InitDrum()
+    {
+        index = 0;
+        drum.transform.position = originPos;
     }
 }
