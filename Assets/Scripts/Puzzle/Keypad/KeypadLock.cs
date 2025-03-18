@@ -33,7 +33,7 @@ public class KeypadLock : PuzzleHandler
 
     public void AddInput(string input)
     {
-        // 버튼 클릭음
+        SoundManager.Instance.PlaySFX("keypadClick");
         if (displaying || complete) return;
         switch (input)
         {
@@ -72,7 +72,7 @@ public class KeypadLock : PuzzleHandler
     {
         inputText.text = correctText;
         panelMesh.material.SetVector("_EmissionColor", screenGrantedColor * screenIntensity);
-        // 정답 효과음
+        SoundManager.Instance.PlaySFX("keypadGranted");
         InteractPuzzle();    
     }
 
@@ -80,7 +80,7 @@ public class KeypadLock : PuzzleHandler
     {
         inputText.text = denyText;
         panelMesh.material.SetVector("_EmissionColor", screenDeniedColor * screenIntensity);
-        // 경고음
+        SoundManager.Instance.PlaySFX("keypadDeniedd");
     }
 
     private IEnumerator DisplayResult(bool ok) // 조작 중

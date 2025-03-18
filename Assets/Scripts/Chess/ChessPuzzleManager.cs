@@ -1,27 +1,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EPieceType
+{
+    Queen,
+    Bishop,
+    End
+}
+
+[DefaultExecutionOrder(-1)]
 public class ChessPuzzleManager : MonoBehaviour
 {
     public static ChessPuzzleManager Instance;
-    public List<ChessPiece> chessPieces; // List<> 
+    public int length;
+    public List<EPieceType> correctAnswer;
+    public List<EPieceType> currentAnswer;
+    public Transform[] transforms;
+    internal int count;
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(this);
+
+        count = 0;
+        currentAnswer = new List<EPieceType>(length);
+        transforms = new Transform[length];
+
+        SetTransforms();
     }
 
-    public void CheckPlacement()
+    public void Initialize()
     {
-        foreach (var piece in chessPieces)
+        count = 0;
+        currentAnswer = new List<EPieceType>(length);
+        transforms = new Transform[length];
+        SetTransforms();
+    }
+
+    private void SetTransforms()
+    {
+        for (int i = 0; i < length; i++)
         {
-            float distance = Vector3.Distance(piece.transform.position, piece.targetData.targetPosition);
-            if (distance > piece.targetData.placementThreshold)
-            {
-                Debug.Log("배치가 틀림! " + piece.targetData.pieceName);
-                return;
-            }
+            if (transform.GetChild(i) != null)
+                transforms[i] = transform.GetChild(i);
+            else
+                Debug.LogWarning("Pivot 갯수가 부족합니다.");
         }
-        Debug.Log("성공!");
     }
 }

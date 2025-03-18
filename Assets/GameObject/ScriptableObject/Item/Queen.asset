@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Queen
   m_EditorClassIdentifier: 
   itemName: "\uD038"
-  itemDescription: 
+  itemDescription: "\uD038 \uCCB4\uC2A4 \uAE30\uBB3C"
   itemCode: 60
   isThereCam: 0

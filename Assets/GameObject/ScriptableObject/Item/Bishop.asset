@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac24cb1ce5a82c44aadfa35851e587ab, type: 3}
-  m_Name: WaterBottle
+  m_Script: {fileID: 11500000, guid: 368720308fb11674b81521f301dce2a7, type: 3}
+  m_Name: Bishop
   m_EditorClassIdentifier: 
-  interactiveItemName: "\uBB3C \uB728\uAE30"
-  itemCode: 44
+  itemName: "\uBE44\uC20D"
+  itemDescription: "\uBE44\uC20D \uCCB4\uC2A4 \uAE30\uBB3C"
+  itemCode: 60
+  isThereCam: 0
