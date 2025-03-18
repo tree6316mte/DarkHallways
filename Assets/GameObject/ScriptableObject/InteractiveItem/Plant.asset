@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Plant
   m_EditorClassIdentifier: 
   interactiveItemName: "\uC2DD\uBB3C"
-  itemCode: -3
+  itemCode: 33

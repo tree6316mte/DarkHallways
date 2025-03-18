@@ -6,6 +6,7 @@ using UnityEngine;
 public class ItemHandler : MonoBehaviour
 {
     public Item itemInstance;
+    public PuzzleHandler puzzleHandler;
     internal int itemCode;
     public event Action<ItemHandler> useItemEvent;
     private EventContainer eventContainer;

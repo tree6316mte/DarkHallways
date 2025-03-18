@@ -5,14 +5,8 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     public bool isShutter; // 문인지 셔터인지
-    public PuzzleHandler locker; 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public PuzzleHandler locker;
+    public bool direction; // true면 왼쪽, false면 오른쪽
     void Update()
     {
         if (locker != null)
@@ -22,15 +16,19 @@ public class Door : MonoBehaviour
     public void Open()
     {
         if (!isShutter)
-            StartCoroutine(OpenDoor());
+            StartCoroutine(OpenDoor(direction));
         else StartCoroutine(OpenShutter());
     }
-    private IEnumerator OpenDoor()
+    private IEnumerator OpenDoor(bool direction)
     {
         float elapsed = 0f;
-
+        Quaternion targetRotation;
         Quaternion startRotation = transform.rotation;
-        Quaternion targetRotation = Quaternion.Euler(0, 120, 0);
+        if (!direction)
+        {
+            targetRotation = Quaternion.Euler(0, -120, 0);
+        }
+        else targetRotation = Quaternion.Euler(0, -120, 0);
         while (elapsed < 2f)
         {
             elapsed += Time.deltaTime;
