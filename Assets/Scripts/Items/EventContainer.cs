@@ -61,6 +61,32 @@ public class EventContainer : MonoBehaviour
             Debug.LogWarning("Fusee를 찾을 수 없습니다.");
         }
     }
+    [ItemEvent(90)]
+    public void Candle(ItemHandler itemHandler)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Debug.DrawRay(ray.origin, ray.direction * 3f, Color.red, 1f);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 3f)) // 3m 거리까지 감지
+        {
+            Debug.Log($"레이가 {hit.collider.name}을 감지함");
+
+            CandleController candle = hit.collider.GetComponent<CandleController>();
+            if (candle != null)
+            {
+                Debug.Log("CandleController 감지됨 LightCandle() 실행");
+                candle.LightCandle();
+            }
+            else
+            {
+                Debug.Log("CandleController가 없음");
+            }
+        }
+        else
+        {
+            Debug.Log("레이가 아무것도 감지하지 못함");
+        }
+    }
 
     /// <summary>
     /// 호출 시점은 Interactive Item이 레이캐스트로 부터 호출 됐을 때

@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c06d6aa9453cb7b49854c0663751968f, type: 3}
-  m_Name: NewCandleData
+  m_Script: {fileID: 11500000, guid: ac24cb1ce5a82c44aadfa35851e587ab, type: 3}
+  m_Name: Cadle
   m_EditorClassIdentifier: 
-  isLit: 0
-  hasBeenLit: 0
+  interactiveItemName: "1\uBC88"
+  itemCode: 90

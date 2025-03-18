@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c06d6aa9453cb7b49854c0663751968f, type: 3}
-  m_Name: NewCandleData
+  m_Script: {fileID: 11500000, guid: 368720308fb11674b81521f301dce2a7, type: 3}
+  m_Name: Candle
   m_EditorClassIdentifier: 
-  isLit: 0
-  hasBeenLit: 0
+  itemName: "\uCE94\uB4E4\uB4E4"
+  itemDescription: 
+  itemCode: 90
+  isThereCam: 0

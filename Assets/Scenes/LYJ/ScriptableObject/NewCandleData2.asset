@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c06d6aa9453cb7b49854c0663751968f, type: 3}
-  m_Name: NewCandleData
+  m_Name: NewCandleData2
   m_EditorClassIdentifier: 
   isLit: 0
   hasBeenLit: 0

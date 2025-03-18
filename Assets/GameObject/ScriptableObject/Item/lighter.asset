@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: "\uB77C\uC774\uD130"
   itemDescription: 
-  itemCode: 0
-  isOwnered: 0
+  itemCode: 90
+  isThereCam: 0

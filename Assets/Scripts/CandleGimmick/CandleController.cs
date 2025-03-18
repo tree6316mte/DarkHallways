@@ -2,36 +2,78 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CandleController : MonoBehaviour
+public class CandleController : PuzzleHandler
 {
     public CandleData candleData;
     public ParticleSystem flameParticles;
     public Material flameMaterial;
     public Light candleLight;
-
     private static int litCandleCount = 0; // 켜진 양초 개수
-    private static int totalCandles = 5; // 전체 양초 개수
+    private static readonly int requiredCandleCount = 3; // 2번, 3번, 4번 총 3개가 켜져야 함(1번이 거짓말쟁이)
+    private static HashSet<int> litCandles = new HashSet<int>(); // 현재 켜진 양초 ID 저장
+
+    public int candleID;
 
     void Start()
     {
-        SetFlameState(candleData.hasBeenLit);
+        if (candleData != null)
+        {
+            candleData.isLit = false;
+            candleData.hasBeenLit = false;
+        }
+
+        SetFlameState(false);
     }
 
-    // 라이터로 불을 붙이는 함수
+    // 라이터로 불을 껐다켰다 토글.
     public void LightCandle()
     {
-        if (!candleData.hasBeenLit)
         {
-            candleData.hasBeenLit = true; // 불을 붙였음을 기록.
-            candleData.isLit = true;
-            ToggleFlame(true);
-            litCandleCount++;
-
-            // 모든 양초가 켜졌다면 "성공!" 메시지 출력
-            if (litCandleCount >= totalCandles)
+            if (candleData.isLit)
             {
-                Debug.Log("성공!");
+                // 이미 켜져 있다면 불을 끄는 동작
+                candleData.isLit = false;
+                candleData.hasBeenLit = false;
+                ToggleFlame(false);
+
+                // 켜진 양초 개수 감소
+                if (litCandles.Contains(candleID))
+                {
+                    litCandles.Remove(candleID);
+                    litCandleCount--;
+                }
+
+                Debug.Log("불이 꺼졌습니다.");
             }
+            else
+            {
+                // 꺼져 있다면 불을 켜는 동작
+                if (!candleData.hasBeenLit)
+                {
+                    candleData.hasBeenLit = true;
+                }
+                candleData.isLit = true;
+                ToggleFlame(true);
+
+                if (!litCandles.Contains(candleID))
+                {
+                    litCandles.Add(candleID);
+                    litCandleCount++;
+                }
+            }
+
+                // 2번, 3번, 4번 캔들이 모두 켜지고 1번이 꺼져야만 문이 열려야 함
+                if (litCandleCount == requiredCandleCount && !litCandles.Contains(1))
+                {
+                    Debug.Log("문이 열렸다!");
+                    // 문이 열리는 동작 추가 가능
+                }
+                else if (litCandles.Contains(1))
+                {
+                    // 1번이 켜져 있을 때 문이 열리지 않도록 설정
+                    Debug.Log("1번 캔들이 켜져있어 문이 열리지 않음");
+                }
+            
         }
     }
 
@@ -42,17 +84,22 @@ public class CandleController : MonoBehaviour
 
     private void SetFlameState(bool state)
     {
-        if(state)
+        if (flameParticles == null || flameMaterial == null || candleLight == null)
         {
-            flameParticles.Play(); // 불을 켰을 때 파티클 시스템 재생
-            flameMaterial.EnableKeyword("_EMISSION"); // 불을 켰을 때 매터리얼의 emission 활성화
-            candleLight.enabled = true; // 불을 켰을 때 빛 활성화
+            Debug.LogError("에디터에서 인스펙터 설정되지않음");
+            return;
+        }
+        if (state)
+        {
+            flameParticles.Play();
+            flameMaterial.EnableKeyword("_EMISSION");
+            candleLight.enabled = true;
         }
         else
         {
-            flameParticles.Stop(); // 불을 껐을 때 파티클 시스템 정지
-            flameMaterial.DisableKeyword("_EMISSION"); // 불을 껐을 때 매터리얼의 emission 비활성화
-            candleLight.enabled = false; // 불을 껐을 때 빛 비활성화
+            flameParticles.Stop();
+            flameMaterial.DisableKeyword("_EMISSION");
+            candleLight.enabled = false;
         }
     }
 }
