@@ -29,7 +29,7 @@ public class Plant : PuzzleHandler
     {
         if (!isWatered)
         {
-            // 물 주는 사운드
+            SoundManager.Instance.PlaySFX("Water");
             isWatered = true; 
             StartCoroutine(WateringPlant());
             ChangeMat();

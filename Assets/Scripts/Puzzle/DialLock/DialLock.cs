@@ -56,6 +56,7 @@ public class DialLock : PuzzleHandler
         {
             isOpen = true;
             drum.SetActive(false );
+            SoundManager.Instance.PlaySFX("DialClear");
             gameObject.AddComponent<Rigidbody>();
             Destroy(this, 2f);
         }
@@ -96,12 +97,14 @@ public class DialLock : PuzzleHandler
     }
     public void NextDrum()
     {
+        SoundManager.Instance.PlaySFX("DialSwitch");
         StartCoroutine(MoveDrum(Vector3.left * 40f));
         index++;
     }
 
     public void PrevDrum()
     {
+        SoundManager.Instance.PlaySFX("DialSwitch");
         StartCoroutine(MoveDrum(Vector3.right * 40f));
         index--;
     }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
 using Unity.VisualScripting;
@@ -134,6 +134,7 @@ public class NumbersDrum : MonoBehaviour
 
     public void DownArrow()
     {
+        SoundManager.Instance.PlaySFX("DialScroll");
         rotateUp = true;
 
         curCount = (curCount - 1 + 10) % 10;
@@ -144,6 +145,7 @@ public class NumbersDrum : MonoBehaviour
     }
     public void UpArrow()
     {
+        SoundManager.Instance.PlaySFX("DialScroll");
         rotateUp = true;
 
         curCount = (curCount + 1  + 10) % 10;

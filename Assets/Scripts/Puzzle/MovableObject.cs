@@ -42,6 +42,7 @@ public class MovableObject : PuzzleHandler
     }
     public void Interact()
     {
+        SoundManager.Instance.PlaySFX("MoveObject");
         StartCoroutine(MoveCoroutine(right));
         isMoved = true;
 
