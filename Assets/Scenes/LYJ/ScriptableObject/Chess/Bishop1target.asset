@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96d1128853f313f458ac8fdade1316bf, type: 3}
+  m_Name: Bishop1target
+  m_EditorClassIdentifier: 
+  pieceName: "\uBE44\uC20D1"
+  targetPosition: {x: 1.1, y: 21.8, z: -31}
+  placementThreshold: 0.3
