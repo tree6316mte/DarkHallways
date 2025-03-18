@@ -422,7 +422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3276aee5a01af44cbfd8f8bea8a7cf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainSceneName: 
+  mainSceneName: PJW_MainScene
   creditPanel: {fileID: 1690084555}
   skipText: {fileID: 1509169994}
   scrollSpeed: 200
