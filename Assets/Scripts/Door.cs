@@ -54,5 +54,7 @@ public class Door : MonoBehaviour
         }
         transform.position = target;
     }
+
+
     
 }

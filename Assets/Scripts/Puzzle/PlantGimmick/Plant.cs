@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Plant : MonoBehaviour
+public class Plant : PuzzleHandler
 {
-    public bool isWatered = false;
+    private bool isWatered = false;
     public float growthDuration = 2f;
     public Transform palm;
     private Vector3 origin;
     private Vector3 targetScale;
     public Color newColor;
+    public WaterBottle water;
     private void Start()
     {
-
         origin = palm.localPosition;
         targetScale = new Vector3(palm.localPosition.x, -1f, palm.localPosition.z);
     }
@@ -21,25 +21,22 @@ public class Plant : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             WaterPlant();
-            ChangeMat();
+
         }
     }
 
     public void WaterPlant()
     {
-        if (!isWatered)
+        if (!isWatered && water.isFull)
         {
             // 물 주는 사운드
-            isWatered = true;
+            isWatered = true; 
             StartCoroutine(WateringPlant());
-            OpenDoor();
+            ChangeMat();
+            InteractPuzzle();
         }
     }
 
-    public void OpenDoor()
-    {
-        Debug.Log("정답");
-    }
 
     private IEnumerator WateringPlant()
     {
