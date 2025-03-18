@@ -12,7 +12,8 @@ public class PuzzleHandler : MonoBehaviour
     {
         isOpen = true;
         _rigidbody = GetComponent<Rigidbody>();
-        _rigidbody.useGravity = true;
+        if( _rigidbody != null )
+            _rigidbody.useGravity = true;
     }
 
     public virtual string GetDescription()
