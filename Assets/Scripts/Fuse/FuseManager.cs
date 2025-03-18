@@ -5,6 +5,7 @@ public class FuseManager : PuzzleHandler
     public FuseSlot[] slots;  // 배치된 모든 퓨즈 슬롯
     public GameObject door;   // 퍼즐 성공 시 열릴 문
 
+    public Water[] waters;  // 배치된 모든 퓨즈 슬롯
     public void CheckFuseOrder()
     {
         foreach (var slot in slots)
@@ -14,6 +15,12 @@ public class FuseManager : PuzzleHandler
                 Debug.Log("퓨즈 배치가 올바르지 않습니다");
                 return;
             }
+        }
+
+        // 물 작동 멈추기
+        foreach (var water in waters)
+        {
+            water.isDeath = false;
         }
 
         // 정답 효과음

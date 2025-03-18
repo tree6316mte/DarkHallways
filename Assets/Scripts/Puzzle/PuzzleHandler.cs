@@ -10,9 +10,9 @@ public class PuzzleHandler : MonoBehaviour
 
     public virtual void InteractPuzzle()
     {
-        //isOpen = true;
+        isOpen = true;
         _rigidbody = GetComponent<Rigidbody>();
-        if( _rigidbody != null )
+        if (_rigidbody != null)
             _rigidbody.useGravity = true;
     }
 
