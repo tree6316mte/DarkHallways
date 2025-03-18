@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1370586292087653415}
   m_Layer: 0
-  m_Name: Fusefuse
+  m_Name: FuseSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,7 +170,7 @@ PrefabInstance:
     - target: {fileID: 8137386767519772988, guid: 2f871ab25b98d8646b221d9ee13ffb54,
         type: 3}
       propertyPath: m_Name
-      value: FusefuseRed
+      value: eRedslotRed
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -350,7 +350,7 @@ PrefabInstance:
     - target: {fileID: 8137386767519772988, guid: 2f871ab25b98d8646b221d9ee13ffb54,
         type: 3}
       propertyPath: m_Name
-      value: FusefuseBlue
+      value: FuseslotBlue
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -530,7 +530,7 @@ PrefabInstance:
     - target: {fileID: 8137386767519772988, guid: 2f871ab25b98d8646b221d9ee13ffb54,
         type: 3}
       propertyPath: m_Name
-      value: FusefuseGreen
+      value: FuseslotGreen
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
