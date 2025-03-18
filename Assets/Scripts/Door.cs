@@ -8,6 +8,9 @@ public class Door : MonoBehaviour
     public PuzzleHandler locker;
     public bool direction; // true면 왼쪽, false면 오른쪽
     private bool isOpened; // 열렸는지
+
+    public Collider collider;
+
     void Update()
     {
         if (locker != null)
@@ -55,7 +58,7 @@ public class Door : MonoBehaviour
         float elapsed = 0f;
 
         Vector3 start = transform.position;
-        Vector3 target = start + new Vector3(0, 5, 0);
+        Vector3 target = start + new Vector3(0, 4, 0);
         while (elapsed < 2f)
         {
             elapsed += Time.deltaTime;
@@ -63,8 +66,9 @@ public class Door : MonoBehaviour
             yield return null;
         }
         transform.position = target;
+        if (collider != null) collider.enabled = false;
     }
 
 
-    
+
 }
