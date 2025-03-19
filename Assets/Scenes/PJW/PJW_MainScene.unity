@@ -991,6 +991,19 @@ MonoBehaviour:
   sfxVolume: 0
   audioClips:
   - {fileID: 8300000, guid: 6fa88048be821f3479ae000b744de2e4, type: 3}
+  - {fileID: 8300000, guid: 2fa02493aab5db143a45c88e53f29cf0, type: 3}
+  - {fileID: 8300000, guid: 7475f534df9918c488ebeda0f78109fd, type: 3}
+  - {fileID: 8300000, guid: a320f44d34dcd0f4c8ebd901295d3888, type: 3}
+  - {fileID: 8300000, guid: 76915526b1243124fbe3650d5fe4a74a, type: 3}
+  - {fileID: 8300000, guid: 4027e3a972314964aa1fc73513a98e53, type: 3}
+  - {fileID: 8300000, guid: 1e81c042725c5b44c9e17af661761af2, type: 3}
+  - {fileID: 8300000, guid: 5ea751150d8de6340bce41d57260e991, type: 3}
+  - {fileID: 8300000, guid: 0effad8614e5674408c3c23fb6d196ff, type: 3}
+  - {fileID: 8300000, guid: e7da0f5997f3365429cc758e64e52589, type: 3}
+  - {fileID: 8300000, guid: 69ea730d6ab89d2439b7f8ab6e0fec64, type: 3}
+  - {fileID: 8300000, guid: 89d62380470be9e47ba7cf3f97105142, type: 3}
+  - {fileID: 8300000, guid: 54ccf978c7886364c980d9f84ff32bd3, type: 3}
+  - {fileID: 8300000, guid: 6badc82930e38c34891f46e1f01f63d3, type: 3}
 --- !u!4 &358348182
 Transform:
   m_ObjectHideFlags: 0

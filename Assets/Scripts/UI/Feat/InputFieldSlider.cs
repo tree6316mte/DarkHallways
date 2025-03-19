@@ -71,12 +71,12 @@ public class InputFieldSlider : MonoBehaviour
 
     public void SetValue(int newValue)
     {
-        // StartCoroutine(UpdateInputField(newValue));
-        Debug.Log("WTF : " + newValue);
-        gameObject.SetActive(true); // UI 활성화 후 텍스트 변경
-        newValue = Mathf.Clamp(newValue, minValue, maxValue);
-        // slider.value = newValue;
-        inputField.text = newValue.ToString();
+        StartCoroutine(UpdateInputField(newValue));
+        // Debug.Log("WTF : " + newValue);
+        // gameObject.SetActive(true); // UI 활성화 후 텍스트 변경
+        // newValue = Mathf.Clamp(newValue, minValue, maxValue);
+        // // slider.value = newValue;
+        // inputField.text = newValue.ToString();
     }
     IEnumerator UpdateInputField(int newValue)
     {
