@@ -91,6 +91,7 @@ public class CandleController : PuzzleHandler
             yield return null;
         }
         shutter.position = target;
+        SoundManager.Instance.PlaySFX("ShutterOpen");
     }
 
     public void ToggleFlame(bool state)
